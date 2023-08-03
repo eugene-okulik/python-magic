@@ -8,6 +8,6 @@ d = c ** 0.5  # Triangle hypotenuse
 
 e = (a * b) / 2  # Triangle area
 
-print('Triangle hypotenuse',  d)
+print('Triangle hypotenuse', d)
 
-print('Triangle area',  e)
+print('Triangle area', e)
