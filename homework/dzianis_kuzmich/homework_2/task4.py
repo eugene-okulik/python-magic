@@ -7,3 +7,4 @@ area = 0.5 * side1 * side2
 print("Hypotenuse:", hypotenuse)
 print("Area:", area)
 
+
