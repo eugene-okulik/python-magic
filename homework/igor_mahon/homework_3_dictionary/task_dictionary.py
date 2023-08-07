@@ -29,7 +29,7 @@ my_dict["list"].pop(1)
 # - добавьте элемент с ключом ('i am a tuple',) и любым значением
 # - удалите какой-нибудь элемент
 
-my_dict["dict"]["i am a tuple"] = "any_value"
+my_dict["dict"][('i am a tuple',)] = "any_value"
 my_dict["dict"].pop("key1")
 
 # ‘set’:
