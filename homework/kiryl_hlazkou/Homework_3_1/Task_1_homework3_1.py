@@ -4,7 +4,7 @@ my_dict = {'tuple': (7, None, 'text', False, 2.42), 'list': [8, None, 'text', Tr
 
 print('Full dictionary:', my_dict)
 
-print('Last element in tuple:', my_dict['tuple'][4])
+print('Last element in tuple:', my_dict['tuple'][-1])
 
 my_dict['list'].append(5)
 
@@ -14,7 +14,7 @@ my_dict['list'].pop(1)
 
 print('Remove second element from the list:', my_dict['list'])
 
-my_dict['dict']['i am a tuple'] = 'False'
+my_dict['dict'][('i am a tuple',)] = 'False'
 
 print('Add element "i am a tuple":', my_dict['dict'])
 
