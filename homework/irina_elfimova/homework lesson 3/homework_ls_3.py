@@ -35,6 +35,3 @@ my_set.add(88)
 print(my_set)
 my_set.discard(77)
 print(my_set)
-
-
-
