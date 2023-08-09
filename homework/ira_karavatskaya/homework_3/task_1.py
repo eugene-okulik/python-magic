@@ -17,6 +17,37 @@ print(my_dict['tuple'][-1])
 my_dict['list'].append(None)
 print('add element "None" to the end of the list:', my_dict['list'])
 
+# удаляем второй элемент списка 'list'
+
+my_dict['list'].pop((1))
+print(my_dict['list'])
+
+# добавляем элемент с ключом 'i am a tuple' и значением '5'
+
+
+my_dict['i am a tuple'] = '5'
+print(my_dict.items())
+
+# удаляем элемент
+
+
+my_dict['dict'].pop('key1')
+print(my_dict.items())
+
+# добавляем новый элемент 'True' во множество 'set'
+
+my_dict['set'].add(33)
+print(my_dict['set'])
+
+# удаляем элемент '5' из множества 'set'
+
+my_dict['set'].remove(5)
+print(my_dict['set'])
+
+# выводим на экран весь словарь
+
+
+print(my_dict)
 
 
 
