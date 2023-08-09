@@ -41,16 +41,13 @@ print(my_dict['set'])
 
 # удаляем элемент '5' из множества 'set'
 
-my_dict['set'].remove(5)
+my_dict['set']. remove(5)
 print(my_dict['set'])
 
 # выводим на экран весь словарь
 
 
 print(my_dict)
-
-
-
 
 
 
