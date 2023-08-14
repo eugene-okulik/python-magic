@@ -14,5 +14,5 @@ len_phrase = len(phrase)
 details_result_index1 = result_one.lower().index("операции: ") + len_phrase
 details_result_index2 = result_two.lower().index("операции: ") + len_phrase
 
-print(int(result_one[details_result_index1:])+10)
-print(int(result_two[details_result_index2:])+10)
+print(int(result_one[details_result_index1:]) + 10)
+print(int(result_two[details_result_index2:]) + 10)
