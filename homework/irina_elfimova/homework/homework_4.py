@@ -50,3 +50,4 @@ subjects = ['math', 'biology', 'geography']
 # Students Ivanov, Petrov, Sidorov study these subjects: math, biology, geograpy
 
 print(f'Students {", ".join(students)}', f'study these subjects: {", ".join(subjects)}')
+
