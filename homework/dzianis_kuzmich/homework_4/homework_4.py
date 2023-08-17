@@ -9,7 +9,7 @@ strings = ["результат операции: 42", "результат опе
 
 for s in strings:
     colon_index = s.index(':')
-    number = int(s[colon_index+2:])
+    number = int(s[colon_index + 2:])
     result = number + 10
     print(result)
 
@@ -20,4 +20,3 @@ subjects = ['math', 'biology', 'geography']
 
 text = f"Students {', '.join(students)} study these subjects: {', '.join(subjects)}"
 print(text)
-
