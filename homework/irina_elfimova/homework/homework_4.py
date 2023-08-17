@@ -29,13 +29,13 @@ word = 'операции:'
 len_word = len(word) + 1
 
 details_index = msg_1.lower().index(word) + len_word
-print(msg_1[details_index:])
+# print(msg_1[details_index:])
 new_num_1 = int(msg_1[details_index:]) + 10
 print(new_num_1)
 
 
 details_index = msg_2.lower().index(word) + len_word
-print(msg_2[details_index:])
+# print(msg_2[details_index:])
 new_num_2 = int(msg_2[details_index:]) + 10
 print(new_num_2)
 
