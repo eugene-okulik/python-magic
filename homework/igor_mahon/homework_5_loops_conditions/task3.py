@@ -19,21 +19,18 @@
 # Подсказка: При тестировании своей программы обращайте внимание на числа 3, 5 и 15
 # (точнее на то, что должно быть напечатано вместо них)
 
-i = 1
+i = 0
 
-while i < 101:
+while i < 100:
+    i += 1
     if (i % 3 == 0) and (i % 5 == 0):
         print("FuzzBuzz")
-        i += 1
         continue
     elif i % 3 == 0:
         print("Fuzz")
-        i += 1
         continue
     elif i % 5 == 0:
         print("Buzz")
-        i += 1
         continue
     else:
         print(i)
-        i += 1
