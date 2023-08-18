@@ -18,7 +18,7 @@ for word in words:
         word = word.replace(word[-1], 'ing.')
         new_text.append(word)
     else:
-        word = word.replace(word[-1], 'ing')
+        word = word+'ing'
         new_text.append(word)
 
 print(' '.join(new_text))
