@@ -8,7 +8,7 @@
 
 
 import random
-random_value = random.randrange (0, 10)
+random_value = random.randrange(0, 10)
 print("Программа загадала число от 0 до 10")
 print(random_value)
 
@@ -18,10 +18,3 @@ while choise != random_value:
 while choise == random_value:
     print("Поздравляю! Вы угадали!")
     break
-
-
-
-
-
-
-

@@ -12,10 +12,10 @@ print(word)
 
 fin_text = []
 for word in my_str.split():
-    if word [-1] == ',':
+    if word[-1] == ',':
         word = word.replace(word[-1], 'ing,')
         fin_text.append(word)
-    elif word [-1] == '.':
+    elif word[-1] == '.':
         word = word.replace(word[-1], 'ing.')
         fin_text.append(word)
     else:
@@ -24,20 +24,3 @@ for word in my_str.split():
 
 new_str = ' '.join(fin_text)
 print(new_str)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
