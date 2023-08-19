@@ -44,4 +44,4 @@ print(my_dict['set'])
 # выводим на экран весь словарь
 
 
-print(my_dict)
+print('my_dict')
