@@ -19,4 +19,7 @@ def multiply(main_numb):
         print(main_numb * 2)
     elif main_numb <= 20:
         print(main_numb * 3)
+
 multiply(main_numb)
+
+
