@@ -1,20 +1,12 @@
-i = 0
+i = 12
+
+e = int(input('Welcome to "УГАДАЙКА!" please, enter your number: '))
 
 while True:
-    i += 1
-    if i > 100:
+    if i != e:
+        print('попробуйте снова')
+        e = int(input('your number: '))
+
+    if i == e:
+        print('Поздравляю! Вы угадали!')
         break
-    if i % 3 == 0 and i % 5 == 0:
-        c = 'FuzzBuzz'
-        print(c)
-        continue
-    if i % 3 == 0:
-        t = 'Fuzz'
-        print(t)
-        continue
-    if i % 5 == 0:
-        e = 'Buzz'
-        print(e)
-        continue
-    else:
-        print(i)

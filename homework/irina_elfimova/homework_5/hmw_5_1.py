@@ -1,12 +1,26 @@
-i = 12
+text = 'Etiam tincidunt neque erat, quis molestie enim imperdiet vel. ' \
+       'Integer urna nisl, facilisis vitae semper at, dignissim vitae libero'
 
-e = int(input('Welcome to "УГАДАЙКА!" please, enter your number: '))
 
-while True:
-    if i != e:
-        print('попробуйте снова')
-        e = int(input('your number: '))
+m_text = text.split()
 
-    if i == e:
-        print('Поздравляю! Вы угадали!')
-        break
+
+s_text = []
+for word in m_text:
+    if ',' in word:
+        word = word.replace(',', 'ing,')
+    elif '.' in word:
+        word = word.replace('.', 'ing.')
+    else:
+        word = word + 'ing'
+    word = word + " "
+    if word == 0:
+        print(word)
+    else:
+        s_text.append(word)
+
+
+str_text = ''.join(s_text)
+
+
+print(str_text)
