@@ -8,7 +8,7 @@ list_new_str = []
 for i in range(len(list_start_str)):
     list_new_str.append(list_start_str[i])
     if i != len(list_start_str) - 1:
-        if list_start_str[i] not in spec_sim and list_start_str[i+1] in spec_sim:
+        if list_start_str[i] not in spec_sim and list_start_str[i + 1] in spec_sim:
             list_new_str.append('ing')
     else:
         break
