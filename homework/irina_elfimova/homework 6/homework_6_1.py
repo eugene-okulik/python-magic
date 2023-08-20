@@ -17,10 +17,3 @@ def multiply(new_num):
 
 
 print(multiply(num))
-
-
-
-
-
-
-
