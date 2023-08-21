@@ -11,6 +11,7 @@ def add_ing(word):
     else:
         return word + "ing"
 
+
 # Splitting the text into individual words
 words = text.split()
 
