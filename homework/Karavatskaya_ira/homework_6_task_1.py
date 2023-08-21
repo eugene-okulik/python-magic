@@ -15,10 +15,10 @@ main_numb = numb_1 * numb_2
 print(('Произведение введенных чисел:', numb_1 * numb_2))
 
 
-def multiply(main_numb):
-    if main_numb > 20:
+def multiply(main_numb_all):
+    if main_numb_all > 20:
         print(main_numb * 2)
-    elif main_numb <= 20:
+    elif main_numb_all <= 20:
         print(main_numb * 3)
 
 
