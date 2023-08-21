@@ -1,4 +1,8 @@
-text = "Etiam tincidunt neque erat, quis molestie enim imperdiet vel. Integer urna nisl, facilisis vitae semper at, dignissim vitae libero"
+text = (
+    "Etiam tincidunt neque erat, quis molestie enim imperdiet vel. "
+    "Integer urna nisl, facilisis vitae semper at, dignissim vitae libero"
+)
+
 
 def add_ing(word):
     # Check if the word ends with a comma or dot
