@@ -14,7 +14,7 @@ print(my_tuple[-1])
 
 my_list = my_dict['list']
 my_list.append('f')
-print(my_list)
+#print(my_list)
 pooped = my_list.pop(1)
 print(my_list)
 
@@ -23,7 +23,7 @@ print(my_list)
 
 dict_my = my_dict['dict']
 dict_my[('i am a tuple',)] = "i'm not a tuple"
-print(dict_my)
+#print(dict_my)
 dict_my.pop('D')
 print(dict_my)
 
@@ -32,6 +32,7 @@ print(dict_my)
 
 my_set = my_dict['set']
 my_set.add(88)
-print(my_set)
+#print(my_set)
 my_set.discard(77)
 print(my_set)
+
