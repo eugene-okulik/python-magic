@@ -12,9 +12,10 @@ random_value = random.randrange(0, 10)
 print("Программа загадала число от 0 до 10")
 print(random_value)
 
-choise = int(input("Введите число: "))
-while choise != random_value:
-    print(input("Попробуй снова!"))
-while choise == random_value:
-    print("Поздравляю! Вы угадали!")
-    break
+while True:
+    choise = int(input("Введите число: "))
+    if choise == random_value:
+        print(input("Поздравляю! Вы угадали!"))
+        break
+    else:
+        print("Попробуй снова")

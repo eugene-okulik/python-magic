@@ -4,15 +4,15 @@
 # для чисел, которые кратны одновременно 3 и 5 надо напечатать "FuzzBuzz" иначе печатать число
 
 
-i = 1
+i = 0
 
 while True:
     i += 1
     if i > 100:
         break
-        if i % 3 == 0 and i % 5 == 0:
-            print('FuzzBuzz')
-            continue
+    if i % 3 == 0 and i % 5 == 0:
+        print('FuzzBuzz')
+        continue
     elif i % 3 == 0:
         print('Fuzz')
     elif i % 5 == 0:
