@@ -22,7 +22,7 @@ print(my_list)
 # удалите какой-нибудь элемент
 
 dict_my = my_dict['dict']
-dict_my['i am a tuple'] = (22, 33, 44, 55, 66)
+dict_my[('i am a tuple',)] = "i'm not a tuple"
 print(dict_my)
 dict_my.pop('D')
 print(dict_my)
