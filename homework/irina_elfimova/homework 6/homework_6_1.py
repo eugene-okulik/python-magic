@@ -11,7 +11,7 @@ def multiply(new_num):
     if num > 20:
         numb = num * 2
         return numb
-    elif num <= 20:
+    else:
         numb1 = num * 3
         return numb1
 
