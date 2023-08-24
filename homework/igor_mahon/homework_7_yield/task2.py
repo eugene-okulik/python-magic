@@ -2,6 +2,11 @@
 # Напишите функцию-генератор, которая генерирует список чисел фибоначчи
 # Распечатайте из этого списка пятое число, двухсотое число, тысячное число, стотысячное число
 
+import sys
+
+sys.set_int_max_str_digits(0)  # This resolved the issue - ValueError: Exceeds the limit (4300) for integer string...
+
+
 def list_fib():
     a = 0
     b = 1
