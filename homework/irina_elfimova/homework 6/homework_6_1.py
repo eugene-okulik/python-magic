@@ -1,19 +1,16 @@
-
 print('Enter number 1')
 num1 = int(input())
 print('Enter number 2')
 num2 = int(input())
 
-num = num1 * num2
 
-
-def multiply(new_num):
+def multiply(n1, n2):
+    num = num1 * num2
     if num > 20:
-        numb = num * 2
-        return numb
+        num = num * 2
     else:
-        numb1 = num * 3
-        return numb1
+        num = num * 3
+    return num
 
 
-print(multiply(num))
+print(multiply(num1, num2))
