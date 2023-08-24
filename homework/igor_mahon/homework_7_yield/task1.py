@@ -17,7 +17,7 @@ def rand_bonus(salary: int):
         new_salary = salary + amount_of_bonus
     else:
         new_salary = salary
-    return print(salary, ", ", bonus, " - '$" + str(new_salary)+"'", sep="")
+    return print(salary, ", ", bonus, " - '$" + str(new_salary) + "'", sep="")
 
 
 print('Your salary: ')
