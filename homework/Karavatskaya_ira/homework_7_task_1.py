@@ -17,6 +17,7 @@ def your_salary():
         print(salary, ',', bonus, '-', '`', '$', nuw_salary, '`')
     else:
         salary = salary
-        print(salary, ',', bonus, '-', '`', '$'+ str(salary) + '`')
+        print(salary, ',', bonus, '-', '`', '$' + str(salary) + '`')
+
 
 print(your_salary())
