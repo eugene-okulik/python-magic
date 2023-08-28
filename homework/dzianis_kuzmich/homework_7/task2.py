@@ -1,7 +1,5 @@
 import sys
 
-# Increase the limit for integer string conversion.
-sys.set_int_max_str_digits(500000)  # A large enough value to handle the 100000th Fibonacci number.
 
 def fibonacci_generator():
     a, b = 0, 1
@@ -9,11 +7,13 @@ def fibonacci_generator():
         yield a
         a, b = b, a + b
 
+
 def get_fibonacci_number(n):
     fib_gen = fibonacci_generator()
     for _ in range(n):
         fib_number = next(fib_gen)
     return fib_number
+
 
 # Get the 5th Fibonacci number
 print("5th Fibonacci number:", get_fibonacci_number(5))

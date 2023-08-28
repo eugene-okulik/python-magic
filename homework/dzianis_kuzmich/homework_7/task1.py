@@ -7,6 +7,7 @@ def get_bonus_status(salary):
         return False
     return None
 
+
 # Let's return 255 for 10000 and 3185 for 600
 def get_bonus_amount(salary):
     if salary == 10000:
@@ -14,6 +15,7 @@ def get_bonus_amount(salary):
     if salary == 600:
         return 3185
     return 0
+
 
 # Ask the user for their salary and convert it to an integer
 salary_str = input("Please enter your salary: ")
@@ -23,7 +25,7 @@ salary = int(salary_str)
 bonus = get_bonus_status(salary)
 
 # If bonus is True, add the pre-defined bonus to the salary
-if bonus == True:
+if bonus:
     salary += get_bonus_amount(salary)
 
 # Print the final salary and bonus status
