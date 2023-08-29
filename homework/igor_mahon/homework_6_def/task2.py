@@ -10,10 +10,5 @@
 
 words = {'I': 3, 'love': 5, 'Python': 1, '!': 50}
 
-
-def dict_handler(new_dict):
-    for key, value in new_dict.items():
-        print(key * value)
-
-
-dict_handler(words)
+for key, value in words.items():
+    print(key * value)
