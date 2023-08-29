@@ -12,16 +12,13 @@ import random
 
 def rand_bonus(salary: int):
     bonus = random.choice([True, False])
-    amount_of_bonus = random.randint(1, 10000)
     if bonus:
-        new_salary = salary + amount_of_bonus
+        new_salary = salary + random.randint(1, 10000)
     else:
         new_salary = salary
     return print(salary, ", ", bonus, " - '$" + str(new_salary) + "'", sep="")
 
 
-print('Your salary: ')
-my_little_salary = int(input())
-
+my_little_salary = int(input('Your salary: \n'))
 
 rand_bonus(my_little_salary)

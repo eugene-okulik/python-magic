@@ -17,9 +17,9 @@ def list_fib():
         b = temp_var + b
 
 
-count = 0
+count = 1
 for number in list_fib():
-    if count == 4 or count == 199 or count == 999 or count == 99999:
+    if count in [5, 200, 1000, 100000]:
         print(number)
     if count > 100000:
         break
