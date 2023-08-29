@@ -1,32 +1,29 @@
-# Function to decide whether to give a bonus or not.
-# Let's assume True for 10000 and 600, and False for 25000
-def get_bonus_status(salary):
-    if salary == 10000 or salary == 600:
-        return True
-    if salary == 25000:
-        return False
-    return None
+import random
 
 
-# Let's return 255 for 10000 and 3185 for 600
+# Function to decide whether to give a bonus or not. The decision is made randomly.
+def get_bonus_status():
+    return random.choice([True, False])
+
+
+# Function to generate a random bonus amount based on the salary
 def get_bonus_amount(salary):
-    if salary == 10000:
-        return 255
-    if salary == 600:
-        return 3185
-    return 0
+    # Generate a random bonus amount between 1% to 10% of the salary and convert to integer
+    return int(salary * random.uniform(0.01, 0.1))
 
 
 # Ask the user for their salary and convert it to an integer
-salary_str = input("Please enter your salary: ")
-salary = int(salary_str)
+salary = int(input("Please enter your salary: "))
 
 # Decide whether to give a bonus
-bonus = get_bonus_status(salary)
+bonus = get_bonus_status()
 
-# If bonus is True, add the pre-defined bonus to the salary
+# Create a new variable to store the final salary
+final_salary = salary
+
+# If bonus is True, add a random bonus to the salary
 if bonus:
-    salary += get_bonus_amount(salary)
+    final_salary += get_bonus_amount(salary)
 
-# Print the final salary and bonus status
-print(f"{salary}, {bonus} - '${salary}'")
+# Print the initial salary, bonus status, and final salary
+print(f"{salary}, {bonus} - '${final_salary}'")
