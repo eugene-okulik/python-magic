@@ -5,12 +5,7 @@ num2 = int(input())
 
 
 def multiply(n1, n2):
-    num = num1 * num2
-    if num > 20:
-        num = num * 2
-    else:
-        num = num * 3
-    return num
+    n1 * n2
 
 
 print(multiply(num1, num2))
