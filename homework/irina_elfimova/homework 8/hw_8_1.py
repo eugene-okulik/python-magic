@@ -1,8 +1,8 @@
 import datetime
 
-default_date = 'Jan 15, 2023 - 12:05:33'
+date = 'Jan 15, 2023 - 12:05:33'
 
-python_date = datetime.datetime.strptime(default_date, '%b %d, %Y - %H:%M:%S')
+python_date = datetime.datetime.strptime(date, '%b %d, %Y - %H:%M:%S')
 
 print(python_date.strftime('%B'))
 
