@@ -10,7 +10,7 @@ PRICE_LIST = '''тетрадь 50р
 new_list = [x.rstrip('р') for x in PRICE_LIST.split()]
 
 
-new_dict = {new_list[i]: new_list[i + 1] for i in range(0, len(new_list), 2)}
+new_dict = {new_list[i]: int(new_list[i + 1]) for i in range(0, len(new_list), 2)}
 
 
 print(new_dict)
