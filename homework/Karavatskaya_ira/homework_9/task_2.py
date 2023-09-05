@@ -19,11 +19,5 @@ PRICE_LIST = '''тетрадь 50р
 пенал 300р
 рюкзак 500р'''
 
-
-new_prise = [x.rstrip('p') for x in PRICE_LIST.split()]
-
-
-convert_price_to_dict = {new_prise[i]: new_prise[i + 1].strip('p') for i in range(0, len(new_prise), 2)}
-
-
-print(convert_price_to_dict)
+price_dict = {item.split()[0]: int(item.split()[1].replace('р', '')) for item in PRICE_LIST.split('\n')}
+print(price_dict)
