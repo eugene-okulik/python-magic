@@ -7,16 +7,15 @@
 import random
 
 
-def your_salary():
-    salary = int(input('Введите значение зарплаты'))
-    bonus = random.choice([True, False])
-
-    if bonus:
-        bonus_value = random.randint(1, 1000)
-        nuw_salary = salary + bonus_value
-        print(salary, ',', bonus, '-', '`', '$', nuw_salary, '`')
-    else:
-        print(salary, ',', bonus, '-', '`', '$' + str(salary) + '`')
+def apply_bonus(your_salary, bonus_n):
+    if bonus_n:
+        bonus_amount = random.randint(0, 100)
+        your_salary += bonus_amount
+    return your_salary
 
 
-your_salary()
+salary = int(input("Введите значение зарплаты: "))
+bonus = random.choice([True, False])
+final_salary = apply_bonus(salary, bonus)
+
+print(salary, bonus, '-', "`", '$', final_salary, '`')

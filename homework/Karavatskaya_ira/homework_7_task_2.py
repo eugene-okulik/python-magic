@@ -2,20 +2,21 @@
 # Распечатайте из этого списка пятое, двухсотое, тысячное и стотысячное число.
 
 
-def fibonacci_generator():
+def fibonacci(limit):
     a, b = 0, 1
-
-    while True:
-        yield a
+    yield a
+    yield b
+    count = 2
+    while count < limit:
         a, b = b, a + b
+        yield b
+        count += 1
 
 
-fibonacci_numbers = []
-generator = fibonacci_generator()
-for i in range(100001):
-    fibonacci_numbers.append(next(generator))
+fib = fibonacci(100001)
+fib_list = list(fib)
 
-print(fibonacci_numbers[4])
-print(fibonacci_numbers[199])
-print(fibonacci_numbers[999])
-print(fibonacci_numbers[99999])
+print(fib_list[4])
+print(fib_list[199])
+print(fib_list[999])
+print(fib_list[99999])
