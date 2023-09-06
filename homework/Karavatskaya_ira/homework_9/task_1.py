@@ -16,7 +16,7 @@ def calc_decorator(func):
             return func(num1, num2, '-')
         elif num1 < num2:
             return func(num1, num2, '/')
-        else:
+        elif num1 < 0 or num2 < 0:
             return func(num1, num2, '*')
     return wrapper
 
@@ -24,23 +24,17 @@ def calc_decorator(func):
 @calc_decorator
 def calc(num1, num2, operation):
     if operation == '+':
-        return num1 + num2
+        return print(num1 + num2)
     elif operation == '-':
-        return num1 - num2
+        return print(num1 - num2)
     elif operation == '/':
-        return num1 / num2
+        return print(num1 / num2)
     elif operation == '*':
-        return num1 * num2
+        return print(num1 * num2)
 
 
-def main():
-    num1 = float(input("Введите первое число"))
-    num2 = float(input("Введите второе число"))
-    result = calc(num1, num2)
-    print(result)
+num_1 = int(input("Введите первое число"))
+num_2 = int(input("Введите второе число"))
 
 
-if __name__ == "__main__":
-    main()
-
-print(calc)
+calc(num_1, num_2)
