@@ -2,21 +2,17 @@
 # Распечатайте из этого списка пятое, двухсотое, тысячное и стотысячное число.
 
 
-def fibonacci(limit):
+def fibonacci():
     a, b = 0, 1
-    yield a
-    yield b
-    count = 2
-    while count < limit:
+    while True:
+        yield a
         a, b = b, a + b
-        yield b
-        count += 1
 
 
-fib = fibonacci(100001)
-fib_list = list(fib)
-
-print(fib_list[4])
-print(fib_list[199])
-print(fib_list[999])
-print(fib_list[99999])
+f = fibonacci()
+for i in range(1, 100001):
+    fib = next(f)
+    if i == 5 or i == 200 or i == 1000 or i == 100000:
+        print(f"{i}-ое число Фибоначчи: {fib}")
+    if i == 100000:
+        break
