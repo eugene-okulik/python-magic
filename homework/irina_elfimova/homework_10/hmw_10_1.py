@@ -39,7 +39,7 @@ class TextBooks(Book_Store):
         super().__init__(name, author, page_number, ISNB)
         self.subject = subject
         self.grade = grade
-        homework = True
+    homework = True
 
 
 book_6 = TextBooks('"Mental Math"', 'J.Smith', 100, 122143256982425435, 'Math', 'Second')
