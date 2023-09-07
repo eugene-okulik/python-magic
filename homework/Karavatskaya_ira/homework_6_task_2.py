@@ -10,9 +10,5 @@
 words = {'I': 3, 'love': 5, 'Python': 1, '!': 50}
 
 
-def dict_new(variable):
-    for key, value in variable.items():
-        print(key * value)
-
-
-dict_new(words)
+for word, count in words.items():
+    print(word * count)
