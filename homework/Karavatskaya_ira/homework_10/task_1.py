@@ -17,101 +17,78 @@
 # если не зарезервирована:
 # Название: Идиот, Автор: Достоевский, страниц: 500,  материал: бумага
 
-
 class Book:
-    def __init__(self, material, has_text, title, author, num_pages, isbn, is_reserved=False):
-        self.material = material
-        self.has_text = has_text
+    material = 'бумага'
+    text = True
+
+    def __init__(self, title, author, num_pages, material, reserved, isbn):
         self.title = title
         self.author = author
         self.num_pages = num_pages
+        self.material = material
+        self.reserved = reserved
         self.isbn = isbn
-        self.is_reserved = is_reserved
 
-    def reserve(self):
-        self.is_reserved = True
-
-    def unreserve(self):
-        self.is_reserved = False
-
-    def print_details(self):
-        if self.is_reserved:
-            reserved_str = ', зарезервирована'
+    def details(self):
+        if self.reserved:
+            print(
+                f"Название: {self.title}, Автор: {self.author}, страниц: {self.num_pages},"
+                f" материал: {self.material}, зарезервирована"
+            )
         else:
-            reserved_str = ''
-
-        print(
-            f"Название: {self.title}, Автор: {self.author}, "
-            f"страниц: {self.num_pages}, материал: {self.material}{reserved_str}"
-        )
+            print(
+                f"Название: {self.title}, Автор: {self.author}, "
+                f"страниц: {self.num_pages}, материал: {self.material}"
+            )
 
 
-# создаем экземпляры книг
-book1 = Book('бумага', True, 'Мастер и Маргарита', 'Михаил Булгаков', 400, '1234567890')
-book2 = Book('бумага', True, 'Война и мир', 'Лев Толстой', 1000, '2345678901')
-book3 = Book('электронная', True, 'Стив Джобс', 'Уолтер Айзексон', 600, '3456789012')
-book4 = Book('бумага', False, '451 градус по Фаренгейту', 'Рэй Брэдбери', 300, '4567890123')
-book5 = Book('бумага', True, 'Идиот', 'Федор Достоевский', 500, '5678901234')
+book1 = Book("Мастер и Маргарита", "Булгаков", 400, "бумага", False, '54335667')
+book2 = Book("Война и мир", "Толстой", 1000, "бумага", True, '43456788')
+book3 = Book("Уолтер Айзексон", "Стив Джобс", 600, "бумага", False, '456835555')
+book4 = Book("451 градус по Фаренгейту", "Рэй Брэдбери", 300, "бумага", False, '555544322')
+book5 = Book("Идиот", "Федор Достоевский", 500, "бумага", False, '67654766')
 
-# помечаем одну книгу как зарезервированную
-book1.reserve()
+book2.reserved = True
 
-# печатаем детали каждой книги
-book1.print_details()
-book2.print_details()
-book3.print_details()
-book4.print_details()
-book5.print_details()
+print("Детали о каждой книге:")
+book1.details()
+book2.details()
+book3.details()
+book4.details()
+book5.details()
 
-
-# Второй класс
-# Создайте дочерний класс для первого. Это будет класс для школьных учебников. В нем будут дополнительные атрибуты:
-#
-# предмет (типа математика, история, география),
-# класс (школьный класс, для которого этот учебник)(осторожно с названием переменной. class - зарезервированное слово),
-# наличие заданий (bool)
-# Создайте несколько экземпляров учебников.
-# После создания пометьте один учебник как зарезервированный.
-# Распечатайте детали о каждом учебнике в таком виде: Если учебник зарезервирован:
-#
-# Название: Алгебра, Автор: Иванов, страниц: 200, предмет: Математика, класс: 9, зарезервирована
-# если не зарезервирован:
-#
-# Название: Алгебра, Автор: Иванов, страниц: 200, предмет: Математика, класс: 9
 
 class Textbook(Book):
-    def __init__(
-            self, material, text, title, author, pages, isbn, reserved=False, subject="",
-            grade="", exercises=False
-    ):
-        super().__init__(material, text, title, author, pages, isbn, reserved)
+    def __init__(self, title, author, num_pages, material, reserved, isbn, subject, grade, exercises):
+        super().__init__(title, author, num_pages, material, reserved, isbn)
         self.subject = subject
         self.grade = grade
         self.exercises = exercises
 
-    def print_details(self):
-        if self.is_reserved:
+    def details(self):
+        if self.reserved:
             print(
                 f"Название: {self.title}, Автор: {self.author}, страниц: {self.num_pages}, "
                 f"материал: {self.material}, предмет: {self.subject}, класс: {self.grade}, зарезервирована"
             )
         else:
             print(
-                f"Название: {self.title}, Автор: {self.author}, страниц: {self.num_pages}, материал: {self.material}, "
-                f"предмет: {self.subject}, класс: {self.grade}"
+                f"Название: {self.title}, Автор: {self.author}, страниц: {self.num_pages}, "
+                f"материал: {self.material}, предмет: {self.subject}, класс: {self.grade}"
             )
 
 
-# Создаем экземпляры учебников
-textbook1 = Textbook("бумага", True, "Алгебра", "Иванов", 200, "1111", True, "Математика", "9")
-textbook2 = Textbook("бумага", True, "История", "Петров", 150, "2222", False, "История", "8")
-textbook3 = Textbook("бумага", True, "География", "Сидоров", 180, "3333", False, "География", "7")
-textbook4 = Textbook("электронный", True, "Физика", "Смирнов", 250, "4444", False, "Физика", "10")
-textbook5 = Textbook("бумага", True, "Биология", "Козлов", 220, "5555", False, "Биология", "11")
+textbook1 = Textbook("Алгебра", "Иванов", 200, "бумага", False, '345678', "Математика", 9, True)
+textbook2 = Textbook("История", "Петров", 150, "бумага", True, '4324566', "История", 10, True)
+textbook3 = Textbook("География", "Сидоров", 180, "бумага", False, '5432123', "География", 8, True)
+textbook4 = Textbook("Физика", "Смирнов", 250, "бумага", False, '6543344', "Физика", 11, True)
+textbook5 = Textbook("Биология", "Козлов", 220, "бумага", False, '6543232', "Химия", 10, True)
 
-# Выводим детали о каждом учебнике
-textbook1.print_details()
-textbook2.print_details()
-textbook3.print_details()
-textbook4.print_details()
-textbook5.print_details()
+textbook2.reserved = True
+
+print("Детали о каждом учебнике:")
+textbook1.details()
+textbook2.details()
+textbook3.details()
+textbook4.details()
+textbook5.details()
