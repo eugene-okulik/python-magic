@@ -12,14 +12,11 @@ numb_2 = int(input('Введите второе число: '))
 print(type(numb_2))
 
 main_numb = numb_1 * numb_2
-print(('Произведение введенных чисел:', numb_1 * numb_2))
+
+if main_numb > 20:
+    main_numb *= 2
+else:
+    main_numb *= 3
 
 
-def multiply(main_numb_all):
-    if main_numb_all > 20:
-        print(main_numb * 2)
-    elif main_numb_all <= 20:
-        print(main_numb * 3)
-
-
-multiply(main_numb)
+print('Результат:', main_numb)
