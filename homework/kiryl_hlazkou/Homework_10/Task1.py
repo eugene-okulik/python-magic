@@ -46,12 +46,12 @@ sbooks = [sbook1, sbook2]
 
 for sbook in sbooks:
     if sbook.reserved:
-        (
-         print(f'Name:{sbook.book_name}, Author:{sbook.author}, pages:{sbook.pages}, '
-               f'subject:{sbook.subject}, clas:{sbook.clas} is reserved')
+        print(
+            f'Name:{sbook.book_name}, Author:{sbook.author}, pages:{sbook.pages}, '
+            f'subject:{sbook.subject}, clas:{sbook.clas} is reserved'
         )
     else:
-        (
-         print(f'Name:{sbook.book_name}, Author:{sbook.author}, pages:{sbook.pages}, '
-               f'material:{sbook.material}, clas:{sbook.clas}')
+        print(
+            f'Name:{sbook.book_name}, Author:{sbook.author}, pages:{sbook.pages}, '
+            f'material:{sbook.material}, clas:{sbook.clas}'
         )
