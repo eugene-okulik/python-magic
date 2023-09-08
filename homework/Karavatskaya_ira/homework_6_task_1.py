@@ -8,6 +8,7 @@
 numb_1 = int(input('Введите первое число: '))
 print(type(numb_1))
 
+
 numb_2 = int(input('Введите второе число: '))
 print(type(numb_2))
 
