@@ -39,13 +39,6 @@ class Bouquet:
         return sum(total_fresh) / len(total_fresh)
 
 
-'''
-5. Позволить сортировку цветов в букете на основе различных параметров 
-(свежесть/цвет/длина стебля/стоимость)(это тоже методы)
-6. Реализовать поиск цветов в букете по каким-нибудь параметрам 
-(например, по среднему времени жизни) (и это тоже метод).
-'''
-
 rose_1 = Rose('red', 50, 120, 5)
 rose_2 = Rose('yello', 40, 110, 4)
 rose_3 = Rose('white', 30, 100, 3)
@@ -57,6 +50,3 @@ tulips_2 = Tulips('red', 50, 90, 3)
 tulips_3 = Tulips('red', 50, 90, 3)
 
 bouquet = Bouquet(rose_1, rose_2, rose_3, peonies_1, peonies_2, peonies_3, tulips_1, tulips_2, tulips_3)
-
-print(bouquet.price)
-print(bouquet.freshness)
