@@ -19,15 +19,15 @@
 
 
 class Book:
-    def __init__(self, name, author, number_pages):
+    def __init__(self, name, author, number_pages, reserved, isbn):
         self.name = name
         self.author = author
         self.pages = number_pages
+        self.isbn = isbn
+        self.reserved = reserved
 
     material = 'бумага'
     text_on_pages = 'Да'
-    international_standard_book_number = 122143242342425435
-    reserved = False
 
     def is_booked(self):
         if self.reserved:
@@ -36,12 +36,11 @@ class Book:
             return ''
 
 
-book1 = Book('Горе от ума том1', 'Грибоедов', 100)
-book2 = Book('Горе от ума том2', 'Грибоедов', 100)
-book3 = Book('Идиот том1', 'Достоевский', 500)
-book3.reserved = True
-book4 = Book('Идиот том2', 'Достоевский', 500)
-book5 = Book('Идиот том3', 'Достоевский', 500)
+book1 = Book('Горе от ума том1', 'Грибоедов', 100, False, 5435435345345)
+book2 = Book('Горе от ума том2', 'Грибоедов', 100, True, 4234324234232)
+book3 = Book('Идиот том1', 'Достоевский', 500, False, 4563346456465)
+book4 = Book('Идиот том2', 'Достоевский', 500, False, 3123123123123)
+book5 = Book('Идиот том3', 'Достоевский', 500, False, 3645645345343)
 
 
 for book in [book1, book2, book3, book4, book5]:
@@ -66,21 +65,18 @@ for book in [book1, book2, book3, book4, book5]:
 
 
 class SchoolBooks(Book):
-    def __init__(self, name, author, number_pages, subject):
-        self.name = name
-        self.author = author
-        self.pages = number_pages
+    def __init__(self, name, author, number_pages, reserved, isbn, subject, grade, homework):
+        super().__init__(name, author, number_pages, reserved, isbn)
         self.subject = subject
-    grade = 10
-    homework = False
+        self.grade = grade
+        self.homework = homework
 
 
-school_book1 = SchoolBooks('Алгебра ч1', 'Петров', 20, 'Математика')
-school_book2 = SchoolBooks('Алгебра ч2', 'Петров', 30, 'Математика')
-school_book3 = SchoolBooks('Геометрия', 'Иванов', 40, 'Математика')
-school_book4 = SchoolBooks('Термодинамика', 'Морозов', 100, 'Физика')
-school_book4.reserved = True
+school_book1 = SchoolBooks('Алгебра ч1', 'Петров', 20, True, 4324243234234, 'Математика', 11, False)
+school_book2 = SchoolBooks('Алгебра ч2', 'Петров', 30, False, 2342342543543, 'Математика', 11, True)
+school_book3 = SchoolBooks('Геометрия', 'Иванов', 40, False, 2423442453645, 'Математика', 10, True)
+school_book4 = SchoolBooks('Термодинамика', 'Морозов', 100, False, 5654645646464, 'Физика', 10, False)
 
 for book in [school_book1, school_book2, school_book3, school_book4]:
     print("Название: ", book.name, ", Автор: ", book.author, ", страниц: ", book.pages,
-          ", предмет: ", book.subject, book.is_booked(), sep='')
+          ", предмет: ", book.subject, ", класс: ", book.grade, book.is_booked(), sep='')
