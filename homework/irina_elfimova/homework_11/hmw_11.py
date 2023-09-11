@@ -1,57 +1,99 @@
-import random
-
-
 class Flowers:
-    def __int__(self, name, stem_length, color, price, lifetime):
+    def __init__(self, name, stem_length, color, price, lifetime):
         self.name = name
-        self.stem_length = stem_length
-        self.color = color
-        self.price = price
         self.lifetime = lifetime
+        self.color = color
+        self.stem_length = stem_length
+        self.price = price
 
 
 class Rose(Flowers):
-
-    def __init__(
-            self, name, stem_length, color, price, lifetime, luxury
-    ):
-        super().__init__(name, stem_length, color, price, lifetime)
-        self.luxury = luxury
-
-
-class Chamomile(Flowers):
-    def __init__(
-            self, name, stem_length, color, price, lifetime, flavour
-    ):
-        super().__init__(name, stem_length, color, price, lifetime)
-        self.flavour = flavour
+    def __init__(self, stem_length, color, price, lifetime):
+        super().__init__('Роза', stem_length, color, price, lifetime)
 
 
 class Tulip(Flowers):
-    def __init__(
-            self, name, stem_length, color, price, lifetime, subspecies
-    ):
-        super().__init__(name, stem_length, color, price, lifetime)
-        self.subspecies = subspecies
+    def __init__(self, stem_length, color, price, lifetime):
+        super().__init__('Тюльпан', stem_length, color, price, lifetime)
 
 
-flower_1 = Rose('Vine Rose', '20 cm', 'Red', 1000, 7, 'High Luxury')
-flower_2 = Chamomile('Bride White', '18 cm', 'White', 800, 5, 'Bride')
-flower_3 = Rose('Dark Rose', '21 cm', 'Dark Red', 1500, 6, 'High Luxury')
-flower_4 = Tulip('Amsterdam', '15 cm', 'Orange', 900, 5, 'Amsterdam Tulip')
-flower_5 = Tulip('Purple Prince', '16 cm', 'Purple', 1200, 7, 'Early Tulips')
-flower_6 = Chamomile('Cladanthus mixtus', '15 cm', 'White', 900, 5, 'Moroccan chamomile')
-
-class Bouquet(Flowers):
-    def __init__(
-            self, name, stem_length, color, price, lifetime,
-    ):
-        super().__init__(name, stem_length, color, price, lifetime)
-    flowers = [flower_1, flower_2, flower_3, flower_4, flower_5, flower_6]
-    n = 3
-    custom_bouquet = random.choice(flowers, n)
-    def lifetime_sort(self):
-        avg_lifetime = flowers.lifetime / 6
+class Chamomile(Flowers):
+    def __init__(self, stem_length, color, price, lifetime):
+        super().__init__('Ромашка', stem_length, color, price, lifetime)
 
 
+flower_1 = Rose(20, 'red', 1000, 7)
+flower_2 = Chamomile(18, 'white', 800, 5)
+flower_3 = Rose(21, 'red', 1500, 6)
+flower_4 = Tulip(15, 'orange', 900, 5)
+flower_5 = Tulip(16, 'purple', 1200, 7)
+flower_6 = Chamomile(15, 'white', 900, 5)
+flowers = [flower_1, flower_2, flower_3, flower_4, flower_5, flower_6]
 
+
+class Bouquet:
+    def __init__(self):
+        self.flowers = []
+
+    def add_flower(self, flower):
+        self.flowers.append(flower)
+
+    def calculate_cost(self):
+        cost = 0
+        for flower in self.flowers:
+            cost += flower.price
+        return cost
+
+    def average_lifetime(self):
+        total_lifetime = 0
+        for flower in self.flowers:
+            total_lifetime += flower.lifetime
+        return total_lifetime / len(self.flowers)
+
+    def sort_by_lifetime(self):
+        self.flowers.sort(key=lambda flower: flower.lifetime)
+
+    def sort_by_color(self):
+        self.flowers.sort(key=lambda flower: flower.color)
+
+    def sort_by_stem_length(self):
+        self.flowers.sort(key=lambda flower: flower.stem_length)
+
+    def sort_by_price(self):
+        self.flowers.sort(key=lambda flower: flower.price)
+
+    def search_colors(self, color):
+        colors = []
+        for flower in self.flowers:
+            if flower.color == color.lower():
+                colors.append((flower.name, flower.color))
+        print(f'По цвету {color} найдено {len(colors)} результата/ов:')
+        for match in colors:
+            print(f"{match[0]} имеет цвет {match[1]} в букете")
+
+
+bouquet = Bouquet()
+bouquet.add_flower(flower_1)
+bouquet.add_flower(flower_5)
+bouquet.add_flower(flower_6)
+
+
+print("Стоимость букета:", bouquet.calculate_cost())
+
+print("Среднее время жизни букета:", int(bouquet.average_lifetime()), 'дней')
+
+print('Сортировка:')
+
+bouquet.sort_by_lifetime()
+print("По свежести:", [flower.name for flower in bouquet.flowers])
+
+bouquet.sort_by_color()
+print("По цвету:", [flower.name for flower in bouquet.flowers])
+
+bouquet.sort_by_stem_length()
+print("По длине стебля:", [flower.name for flower in bouquet.flowers])
+
+bouquet.sort_by_price()
+print("По цене:", [flower.name for flower in bouquet.flowers])
+
+bouquet.search_colors('purple')
