@@ -40,7 +40,7 @@ class Cactus(Flower):
 
 tulip = Tulip(10, 'A', 'orange', 30, 3)
 tulip2 = Tulip(32, 'C', 'orange', 100, 15)
-rose = Rose(20, 'B', 'scarlet', 50, 5)
+rose = Rose(20, 'B', 'scarlet', 30, 5)
 rose2 = Rose(20, 'A', 'scarlet', 60, 10)
 lily = Lily(2, 'C', 'scarlet', 20, 1)
 lily2 = Lily(11, 'B', 'white', 23, 4)
@@ -98,14 +98,14 @@ class Bouquet:
             print(f' - The flower {flower.name} has the price of {flower.price}$ in the bouquet')
 
     # Реализовать поиск цветов в букете по каким-нибудь параметрам - цвет
-    def search_colors(self, color):
+    def search_by_any_parametr(self, word):
         matches = []
         for flower in self.flowers:
-            if flower.color == color.lower():
-                matches.append((flower.name, flower.color))
-        print(f'По запросу {color} найдено {len(matches)} результата/ов:')
+            if word in [flower.color, flower.length, flower.avg_life, flower.price]:
+                matches.append((flower.name, word))
+        print(f'По запросу "{word}" найдено {len(matches)} результата/ов в букете:')
         for match in matches:
-            print(f"Цветок {match[0]} имеет цвет {match[1]} в букете")
+            print(f"Цветок '{match[0]}' имеет параметр '{match[1]}' в букете")
 
 
 bouquet1 = Bouquet(tulip, lily, rose, lily2, rose2, tulip2, cactus)
@@ -115,4 +115,4 @@ bouquet1.sort_by_freshness()
 bouquet1.sort_by_color()
 bouquet1.sort_by_length()
 bouquet1.sort_by_price()
-bouquet1.search_colors('SCaRLeT')
+bouquet1.search_by_any_parametr(10)
