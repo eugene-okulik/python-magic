@@ -5,19 +5,18 @@
 # Если результат изначального умножения меньше или равно 20, то он умножается на 3.
 
 
-numb_1 = int(input('Введите первое число: '))
-print(type(numb_1))
+def multiply_numbers():
+    numb_1 = int(input('Введите первое число: '))
+    numb_2 = int(input('Введите второе число: '))
+
+    resalt = numb_1 * numb_2
+
+    if resalt > 20:
+        resalt *= 2
+    else:
+        resalt *= 3
+
+    print('Результат:', resalt)
 
 
-numb_2 = int(input('Введите второе число: '))
-print(type(numb_2))
-
-main_numb = numb_1 * numb_2
-
-if main_numb > 20:
-    main_numb *= 2
-else:
-    main_numb *= 3
-
-
-print('Результат:', main_numb)
+multiply_numbers()
