@@ -10,7 +10,6 @@ class Book:
         self.reserved = reserved
         self.reserved_print = self.reserved_print
 
-
     def reserved_print(self):
         if self.reserved:
             return (f'Название: {self.title}, Автор: {self.author},'
