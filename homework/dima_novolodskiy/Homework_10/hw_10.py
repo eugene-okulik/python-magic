@@ -8,15 +8,16 @@ class Book:
         self.number_pages = number_pages
         self.isbn = isbn
         self.reserved = reserved
-        self.print_book = self.reserved_print
+        self.reserved_print = self.reserved_print
 
-    def reserved_print(book):
-        if book.reserved:
-            return (f'Название: {book.title}, Автор: {book.author},'
-                    f' страниц: {book.number_pages}, материал: {book.material_pages}, зарезервирована')
+
+    def reserved_print(self):
+        if self.reserved:
+            return (f'Название: {self.title}, Автор: {self.author},'
+                    f' страниц: {self.number_pages}, материал: {self.material_pages}, зарезервирована')
         else:
-            return (f'Название: {book.title}, Автор: {book.author},'
-                    f' страниц: {book.number_pages}, материал: {book.material_pages}')
+            return (f'Название: {self.title}, Автор: {self.author},'
+                    f' страниц: {self.number_pages}, материал: {self.material_pages}')
 
 
 book1 = Book(title="Цель", author="Элияху Голдратт", number_pages=486, isbn="985-483-216-3")
@@ -27,11 +28,11 @@ book5 = Book(title="Женщины", author="Чарльз Буковски", num
 
 book5.reserved = True
 
-print(book1.print_book())
-print(book2.print_book())
-print(book3.print_book())
-print(book4.print_book())
-print(book5.print_book())
+print(book1.reserved_print())
+print(book2.reserved_print())
+print(book3.reserved_print())
+print(book4.reserved_print())
+print(book5.reserved_print())
 
 
 class Textbook(Book):
@@ -41,16 +42,16 @@ class Textbook(Book):
         self.subject = subject
         self.level = level
         self.exercises = exercises
-        self.print_textbook = self.reserved_print_textbook
+        self.reserved_print_textbook = self.reserved_print_textbook
 
-    def reserved_print_textbook(textbook):
-        if textbook.reserved:
-            return (f'Название: {textbook.title}, Автор: {textbook.author}, страниц: {textbook.number_pages},'
-                    f' предмет: {textbook.material_pages}, класс: {textbook.level}, зарезервирована')
+    def reserved_print_textbook(self):
+        if self.reserved:
+            return (f'Название: {self.title}, Автор: {self.author}, страниц: {self.number_pages},'
+                    f' предмет: {self.material_pages}, класс: {self.level}, зарезервирована')
 
         else:
-            return (f'Название: {textbook.title}, Автор: {textbook.author}, страниц: {textbook.number_pages},'
-                    f' предмет: {textbook.material_pages}, класс: {textbook.level}')
+            return (f'Название: {self.title}, Автор: {self.author}, страниц: {self.number_pages},'
+                    f' предмет: {self.material_pages}, класс: {self.level}')
 
 
 textbook_1 = Textbook(
@@ -76,8 +77,8 @@ textbook_5 = Textbook(
 
 textbook_3.reserved = True
 
-print(textbook_1.print_textbook())
-print(textbook_2.print_textbook())
-print(textbook_3.print_textbook())
-print(textbook_4.print_textbook())
-print(textbook_5.print_textbook())
+print(textbook_1.reserved_print_textbook())
+print(textbook_2.reserved_print_textbook())
+print(textbook_3.reserved_print_textbook())
+print(textbook_4.reserved_print_textbook())
+print(textbook_5.reserved_print_textbook())
