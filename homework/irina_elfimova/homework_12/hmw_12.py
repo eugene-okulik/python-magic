@@ -59,3 +59,4 @@ def day_before(data):
 print('На три года позже:', new_data(date_1, time_1))
 print('День недели:', week_day(date_2))
 print('Cколько дней назад была эта дата:', day_before(date_3))
+
