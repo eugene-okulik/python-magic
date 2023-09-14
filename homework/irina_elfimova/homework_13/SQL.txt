@@ -1,0 +1,53 @@
+NSERT INTO students (name, second_name, group_id) VALUES ('Barbie', 'Rubinstain', 1)
+
+INSERT INTO books (title, taken_by_student_id) VALUES ('Arts', 20)
+
+INSERT INTO books (title, taken_by_student_id) VALUES ('Math', 20)
+
+INSERT INTO `groups` (title, start_date, end_date) VALUES ('TSR-17', 'Dec-2023', 'Mar-2026')
+
+UPDATE students SET group_id = 17 WHERE id = 20
+
+INSERT INTO subjets  (title) VALUES ('ARTS')
+
+INSERT INTO subjets (title) VALUES ('SIENCE')
+
+INSERT INTO subjets (title) VALUES ('ENGLISH')
+
+INSERT INTO lessons (title, subject_id) VALUES ('first_lesson', 2)
+
+INSERT INTO lessons (title, subject_id) VALUES ('second_lesson', 2)
+
+INSERT INTO lessons (title, subject_id) VALUES ('first_lesson', 3)
+
+INSERT INTO lessons (title, subject_id) VALUES ('second_lesson', 3)
+
+INSERT INTO lessons (title, subject_id) VALUES ('first_lesson', 4)
+
+INSERT INTO lessons (title, subject_id) VALUES ('second_lesson', 4)
+
+INSERT INTO marks (value, lesson_id, student_id) VALUES ('A', 2, 20)
+
+INSERT INTO marks (value, lesson_id, student_id) VALUES ('B', 3, 20)
+
+INSERT INTO marks (value, lesson_id, student_id) VALUES ('B+', 4, 20)
+
+INSERT INTO marks (value, lesson_id, student_id) VALUES ('A+', 5, 20)
+
+INSERT INTO marks (value, lesson_id, student_id) VALUES ('C-', 6, 20)
+
+INSERT INTO marks (value, lesson_id, student_id) VALUES ('B+', 7, 20)
+
+
+SELECT value FROM marks WHERE student_id = 20
+
+SELECT title FROM books WHERE taken_by_student_id = 20
+
+SELECT * FROM students
+join `groups`
+ON `groups`.id = students.group_id
+join books
+ON books.taken_by_student_id = students.id
+join marks
+ON marks.student_id = students.id
+WHERE students.id = 20
