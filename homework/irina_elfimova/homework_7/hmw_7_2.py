@@ -1,13 +1,18 @@
-def febonachu_num(f_num):
+import sys
+def febonachu_gen(f_num):
     a, b = 0, 1
-    for i in range(f_num):
+    while True:
         yield a
         a, b = b, a + b
 
+def fibonacci_number(n):
+    fib_gen = febonachu_gen()
+    for _ in range(n):
+        fib_number = next(fib_gen)
+    return fib_number
 
-c = list(febonachu_num(100000))
+print(fibonacci_number(5))
+print(fibonacci_number(200))
+print(fibonacci_number(1000))
+print(fibonacci_number(100000))
 
-print(c[4])
-print(c[199])
-print(c[999])
-print(c[99999])
