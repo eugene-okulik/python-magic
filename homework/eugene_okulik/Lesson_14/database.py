@@ -7,11 +7,11 @@ dotenv.load_dotenv()
 
 
 db = mysql.connect(
-   host=os.getenv('DB_HOST'),
-   port=os.getenv('DB_PORT'),
-   user=os.getenv('DB_USER'),
-   passwd=os.getenv('DB_PASSW'),
-   database=os.getenv('DB_NAME')
+    host=os.getenv('DB_HOST'),
+    port=os.getenv('DB_PORT'),
+    user=os.getenv('DB_USER'),
+    passwd=os.getenv('DB_PASSW'),
+    database=os.getenv('DB_NAME')
 )
 
 cursor = db.cursor(dictionary=True)
@@ -32,7 +32,7 @@ print(cursor.fetchall())
 
 query = '''
 SELECT * FROM students
-JOIN `groups` 
+JOIN `groups`
 ON `groups`.id = students.group_id
 JOIN books
 ON books.taken_by_student_id = students.id
