@@ -126,11 +126,12 @@ else:
     if args.full is False:
         for log in dict_log:
             print(
-                colorama.Fore.LIGHTYELLOW_EX + f'[{log}]' + ' ' + colorama.Fore.LIGHTWHITE_EX + f'{dict_log[log][0:300]}'
+                colorama.Fore.LIGHTYELLOW_EX + f'[{log}]' + ' ' +
+                colorama.Fore.LIGHTWHITE_EX + f'{dict_log[log][0:300]}'
             )
     else:
         for log in dict_log:
             print(colorama.Fore.LIGHTYELLOW_EX + f'[{log}]' + ' ' + colorama.Fore.LIGHTWHITE_EX + f'{dict_log[log]}')
 
-print(colorama.Fore.LIGHTYELLOW_EX + f'Total logs count:' + colorama.Fore.LIGHTCYAN_EX + f' {len(Total_logs_count)}')
-print(colorama.Fore.LIGHTYELLOW_EX + f'Total results count:' + colorama.Fore.LIGHTCYAN_EX + f' {len(dict_log)}')
+print(colorama.Fore.LIGHTYELLOW_EX + 'Total logs count:' + colorama.Fore.LIGHTCYAN_EX + f' {len(Total_logs_count)}')
+print(colorama.Fore.LIGHTYELLOW_EX + 'Total results count:' + colorama.Fore.LIGHTCYAN_EX + f' {len(dict_log)}')
