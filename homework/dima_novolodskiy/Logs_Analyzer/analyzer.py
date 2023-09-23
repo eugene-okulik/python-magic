@@ -1,7 +1,7 @@
 import os
 import argparse
 import datetime
-import colorama
+from colorama import Fore
 
 parser = argparse.ArgumentParser()
 parser.add_argument("file", help="Path to file or directory")
@@ -120,18 +120,16 @@ if args.unwanted is not None:
 if args.text is not None:
     for log in dict_log:
         text_log = find_word(dict_log[log], args.text)
-        print(colorama.Fore.LIGHTYELLOW_EX + f'[{log}]' + ' ' + colorama.Fore.LIGHTWHITE_EX + text_log[
-            0] + colorama.Fore.LIGHTGREEN_EX + args.text + colorama.Fore.LIGHTWHITE_EX + text_log[1])
+        print(Fore.LIGHTYELLOW_EX + f'[{log}]' + ' ' + Fore.LIGHTWHITE_EX + text_log[
+            0] + Fore.LIGHTGREEN_EX + args.text + Fore.LIGHTWHITE_EX + text_log[1])
 else:
     if args.full is False:
         for log in dict_log:
             print(
-                colorama.Fore.LIGHTYELLOW_EX + f'[{log}]' + ' ' +
-                colorama.Fore.LIGHTWHITE_EX + f'{dict_log[log][0:300]}'
-            )
+                Fore.LIGHTYELLOW_EX + f'[{log}]' + ' ' + Fore.LIGHTWHITE_EX + f'{dict_log[log][0:300]}')
     else:
         for log in dict_log:
-            print(colorama.Fore.LIGHTYELLOW_EX + f'[{log}]' + ' ' + colorama.Fore.LIGHTWHITE_EX + f'{dict_log[log]}')
+            print(Fore.LIGHTYELLOW_EX + f'[{log}]' + ' ' + Fore.LIGHTWHITE_EX + f'{dict_log[log]}')
 
-print(colorama.Fore.LIGHTYELLOW_EX + 'Total logs count:' + colorama.Fore.LIGHTCYAN_EX + f' {len(Total_logs_count)}')
-print(colorama.Fore.LIGHTYELLOW_EX + 'Total results count:' + colorama.Fore.LIGHTCYAN_EX + f' {len(dict_log)}')
+print(Fore.LIGHTYELLOW_EX + 'Total logs count:' + Fore.LIGHTCYAN_EX + f' {len(Total_logs_count)}')
+print(Fore.LIGHTYELLOW_EX + 'Total results count:' + Fore.LIGHTCYAN_EX + f' {len(dict_log)}')
