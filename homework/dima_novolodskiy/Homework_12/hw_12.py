@@ -1,4 +1,5 @@
 import datetime
+from dateutil.relativedelta import relativedelta
 import os
 
 now = datetime.datetime.now()
@@ -18,12 +19,11 @@ def get_date(list_line):
 
 
 date_1 = get_date(list_file[0])
-dt_future = date_1.replace(year=date_1.year + 3)
+dt_future = date_1 + relativedelta(years=+ 3)
 print(dt_future)
 
 date_2 = get_date(list_file[1])
-week_days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-print(week_days[datetime.datetime.weekday(date_2)])
+print(date_2.strftime('%A'))
 
 date_3 = get_date(list_file[2])
-print(now - date_3)
+print((now - date_3).days)
