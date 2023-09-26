@@ -1,0 +1,58 @@
+INSERT INTO `groups` (title, start_date,end_date) values ('AQA-01', 'jun-2023', 'des-2024')
+
+INSERT INTO students (name, second_name, group_id) values ('Martin', 'Lutter', 11)
+
+INSERT INTO books (title, taken_by_student_id) values ('Lutherbibel', 17)
+
+INSERT INTO books (title, taken_by_student_id) values ('Philosophy', 17)
+
+INSERT INTO books (title, taken_by_student_id) values ('Theology', 17)
+
+UPDATE students SET group_id = 11 WHERE id = 17
+
+INSERT INTO subjets (title) VALUES ('history')
+
+INSERT INTO subjets (title) VALUES ('biology')
+
+INSERT INTO subjets (title) VALUES ('math')
+
+INSERT INTO lessons (title, subject_id) VALUES ('classes one', 7)
+
+INSERT INTO lessons (title, subject_id) VALUES ('classes two', 7)
+
+INSERT INTO lessons (title, subject_id) VALUES ('classes one', 8)
+
+INSERT INTO lessons (title, subject_id) VALUES ('classes two', 8)
+
+INSERT INTO lessons (title, subject_id) VALUES ('classes one', 9)
+
+INSERT INTO lessons (title, subject_id) VALUES ('classes two', 9)
+
+INSERT INTO marks (value, lesson_id, student_id) VALUES (8, 12, 17)
+
+INSERT INTO marks (value, lesson_id, student_id) VALUES (7, 13, 17)
+
+INSERT INTO marks (value, lesson_id, student_id) VALUES (9, 14, 17)
+
+INSERT INTO marks (value, lesson_id, student_id) VALUES (6, 15, 17)
+
+INSERT INTO marks (value, lesson_id, student_id) VALUES (10, 16, 17)
+
+INSERT INTO marks (value, lesson_id, student_id) VALUES (7, 17, 17)
+
+
+SELECT value FROM marks 
+WHERE student_id = 17
+
+SELECT title FROM books 
+WHERE taken_by_student_id = 17
+
+SELECT * FROM students 
+JOIN `groups` 
+ON `groups`.id = students.group_id
+JOIN books 
+ON books.taken_by_student_id = students.id
+JOIN marks 
+ON marks.student_id = students.id 
+WHERE students.id = 17
+
