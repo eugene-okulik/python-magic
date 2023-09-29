@@ -1,17 +1,22 @@
 import os
 import argparse
 import datetime
-import requests
-from urllib.parse import urlparse
+import glob
+from colorama import Fore, Style
+
+# Define color constants
+DATE_COLOR = Fore.YELLOW
+TEXT_COLOR = Fore.RED
+HEADER_COLOR = Fore.CYAN
 
 # Define the argument parser
 parser = argparse.ArgumentParser(description='Log File Filter')
 
-# Add arguments for specifying URL or local file and search criteria
-parser.add_argument('url_or_file', help='URL to a log file or local file containing log data')
+# Add arguments for specifying folder path or search criteria
+parser.add_argument('path', help='Folder path containing log files or path to a single log file')
 parser.add_argument('--date', help="Datetime for search (format: 'YYYY-MM-DD HH:MM:SS.fff')")
 parser.add_argument('--date_less', help="Filter logs less than the specified date (format: 'YYYY-MM-DD HH:MM:SS.fff')")
-parser.add_argument('--date_greater', help="Filter logs greater than  date (format: 'YYYY-MM-DD HH:MM:SS.fff')")
+parser.add_argument('--date_greater', help="Filter logs greater than date (format: 'YYYY-MM-DD HH:MM:SS.fff')")
 parser.add_argument('--date_range', help="Filter logs date range ('YYYY-MM-DD HH:MM:SS.fff/YYYY-MM-DD HH:MM:SS.fff')")
 parser.add_argument('--text', help='Filter logs by text content')
 parser.add_argument('--notext', help='Exclude logs that contain the specified text')
@@ -20,23 +25,13 @@ parser.add_argument('--full', help='Display the full log messages', action='stor
 args = parser.parse_args()
 
 
-# Function to fetch logs from URL or read logs from a local file
-def fetch_logs(url_or_file):
-    parsed_url = urlparse(url_or_file)
-
-    if parsed_url.scheme in ('http', 'https'):
-        try:
-            response = requests.get(url_or_file)
-            response.raise_for_status()
-            return response.text
-        except requests.exceptions.RequestException as e:
-            print(f"Error fetching logs from URL: {e}")
-            exit()
-    elif os.path.isfile(url_or_file):
-        with open(url_or_file, 'r') as log_file:
+# Function to fetch logs from a file
+def fetch_logs(file):
+    if os.path.isfile(file):
+        with open(file, 'r') as log_file:
             return log_file.read()
     else:
-        print("Invalid URL or file path.")
+        print(f"Invalid file or folder path: {file}")
         exit()
 
 
@@ -75,6 +70,18 @@ def get_timestamp(line):
         return datetime.datetime.strptime(line[:23], '%Y-%m-%d %H:%M:%S.%f')
     except ValueError:
         return None
+
+
+# Function to colorize text within log entries
+def colorize_log_entry(log_entry):
+    # Colorize the date
+    log_entry = log_entry.replace(log_entry[:23], DATE_COLOR + log_entry[:23] + Style.RESET_ALL, 1)
+
+    # Colorize the text (if specified)
+    if args.text and args.text in log_entry:
+        log_entry = log_entry.replace(args.text, TEXT_COLOR + args.text + Style.RESET_ALL)
+
+    return log_entry
 
 
 # Function to filter and print log entries based on criteria
@@ -123,7 +130,7 @@ def filter_and_print_logs(log_content, args):
     # Display log entries in the desired format
     for date, log_entry in matching_logs.items():
         if args.full:
-            print(log_entry)
+            print(colorize_log_entry(log_entry))
         else:
             if args.text:
                 index = log_entry.find(args.text)
@@ -132,15 +139,25 @@ def filter_and_print_logs(log_content, args):
                     end_index = min(index + len(args.text) + 150, len(log_entry))
                     log_entry = log_entry[start_index:end_index]
             log_entry_short = log_entry[:300]  # Display the first 300 characters
-            print(log_entry_short)
+            print(colorize_log_entry(log_entry_short))
 
-    print(f"Total logs count: {total_logs_count}")
-    print(f"Total results count: {total_results_count}")
+    # Apply color to headers and display counts
+    print(HEADER_COLOR + f"Total logs count: {total_logs_count}" + Style.RESET_ALL)
+    print(HEADER_COLOR + f"Total results count: {total_results_count}" + Style.RESET_ALL)
 
 
-# Fetch logs from the provided URL or local file
-log_content = fetch_logs(args.url_or_file)
-
-# Process and filter logs
-print(f"Processing logs from: {args.url_or_file}")
-filter_and_print_logs(log_content, args)
+# Check if the input path is a file or folder
+if os.path.isfile(args.path):
+    # If it's a single file, process it
+    log_content = fetch_logs(args.path)
+    print(f"Processing logs from: {args.path}")
+    filter_and_print_logs(log_content, args)
+elif os.path.isdir(args.path):
+    # If it's a folder, use glob to find all log files and process them
+    log_files = glob.glob(os.path.join(args.path, '*.log'))
+    for log_file in log_files:
+        print(f"Processing logs from: {log_file}")
+        log_content = fetch_logs(log_file)
+        filter_and_print_logs(log_content, args)
+else:
+    print("Invalid file or folder path.")
