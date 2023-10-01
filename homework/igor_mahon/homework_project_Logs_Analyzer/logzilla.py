@@ -9,23 +9,23 @@ init(autoreset=True)
 
 # The first step in using the argparse is creating an ArgumentParser object:
 parser = argparse.ArgumentParser(
-    prog="\n*************************************************\n" +
-         f"{Fore.YELLOW}          'LogZilla' by Igor Mahon.{Fore.RESET}\n" +
+    prog="\n*************************************************\n"
+         f"{Fore.YELLOW}          'LogZilla' by Igor Mahon.{Fore.RESET}\n"
          "*************************************************\n",
-    description="Find info in logs according to the given parameters. " +
+    description="Find info in logs according to the given parameters. "
                 "By default it prints the first 300 symbols of the log(if [-f]= False)",
     epilog=f"{Fore.BLUE}!All rights reserved!{Fore.RESET}"
 )
 
 # Filling ArgumentParser with information about program arguments is done by making calls to the add_argument() method.
 parser.add_argument("file", help="path to file/folder. "
-                                 "The default path is set to: python-magic/homework/eugene-okulik/data/" +
+                                 "The default path is set to: python-magic/homework/eugene-okulik/data/"
                                  f"{Fore.RED}[enter path to the file/folder name]{Fore.RESET}"
                     )
-parser.add_argument("-dt", "--datetime", help='datetime to search: ' +
-                                              'to date: "../2023-01-01 00:00:00.000", ' +
-                                              'from date: "2023-01-01 00:00:00.000/..", ' +
-                                              'from-to date: "2023-01-01 00:00:00.000|2023-01-01 00:00:00.000", ' +
+parser.add_argument("-dt", "--datetime", help='datetime to search: '
+                                              'to date: "../2023-01-01 00:00:00.000", '
+                                              'from date: "2023-01-01 00:00:00.000/..", '
+                                              'from-to date: "2023-01-01 00:00:00.000|2023-01-01 00:00:00.000", '
                                               'exact date: "=2023-01-01 00:00:00.000".'
                     )
 parser.add_argument("-t", "--text", help="text to search")
@@ -35,10 +35,10 @@ parser.add_argument("-f", "--full", help="return full log instead of default sym
                     )
 args = parser.parse_args()
 print(Fore.CYAN + "\nYou've entered these parameters:")
-print(f"{Fore.LIGHTBLACK_EX}Filename or the path to file/s:{Fore.RESET} {args.file}" +
-      f"\n{Fore.LIGHTBLACK_EX}Datetime to search:{Fore.RESET} {args.datetime}" +
-      f"\n{Fore.LIGHTBLACK_EX}Text to search:{Fore.RESET} {args.text}" +
-      f"\n{Fore.LIGHTBLACK_EX}Text to exclude from search:{Fore.RESET} {args.exclude}" +
+print(f"{Fore.LIGHTBLACK_EX}Filename or the path to file/s:{Fore.RESET} {args.file}"
+      f"\n{Fore.LIGHTBLACK_EX}Datetime to search:{Fore.RESET} {args.datetime}"
+      f"\n{Fore.LIGHTBLACK_EX}Text to search:{Fore.RESET} {args.text}"
+      f"\n{Fore.LIGHTBLACK_EX}Text to exclude from search:{Fore.RESET} {args.exclude}"
       f"\n{Fore.LIGHTBLACK_EX}Display the full log:{Fore.RESET} {args.full}"
       )
 print(Fore.LIGHTBLACK_EX + '***********************************************************************')
@@ -64,8 +64,8 @@ def determine_file_or_folder(path):
 input_type = determine_file_or_folder(log_path)
 if input_type == 'invalid path':
     print(
-        Fore.RED + "Invalid path. Please enter a valid file or folder path. " +
-        "The default path is set to: python-magic/homework/eugene-okulik/data/" +
+        Fore.RED + "Invalid path. Please enter a valid file or folder path. "
+        "The default path is set to: python-magic/homework/eugene-okulik/data/"
         f"{Fore.RED}[enter path to the file/folder name]{Fore.RESET}"
     )
     sys.exit()
