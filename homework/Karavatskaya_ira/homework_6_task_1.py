@@ -16,8 +16,8 @@ def resalt(numb_3, numb_4):
     else:
         print(multiply_numbers(first_result, 3))
 
+
 a = int(input('Введите первое число: '))
 b = int(input('Введите второе число: '))
-
 
 resalt(a, b)
