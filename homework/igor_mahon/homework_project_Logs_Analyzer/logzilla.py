@@ -4,6 +4,7 @@ import argparse  # The argparse module makes it easy to write user-friendly comm
 from datetime import datetime
 # Improve the appearance of executing in the terminal/cmd ;)
 from colorama import Fore, init
+
 init(autoreset=True)
 
 # The first step in using the argparse is creating an ArgumentParser object:
@@ -62,19 +63,20 @@ def determine_file_or_folder(path):
 # Check and forewarn the user if the input is invalid.
 input_type = determine_file_or_folder(log_path)
 if input_type == 'invalid path':
-    print(Fore.RED + "Invalid path. Please enter a valid file or folder path. " +
-          "The default path is set to: python-magic/homework/eugene-okulik/data/" +
-          f"{Fore.RED}[enter path to the file/folder name]{Fore.RESET}"
-          )
+    print(
+        Fore.RED + "Invalid path. Please enter a valid file or folder path. " +
+        "The default path is set to: python-magic/homework/eugene-okulik/data/" +
+        f"{Fore.RED}[enter path to the file/folder name]{Fore.RESET}"
+    )
     sys.exit()
 elif input_type == 'folder':
-    print(Fore.BLUE + "You've provided a folder path. Reading all files in the folder...")
-
+    print(
+        Fore.BLUE + "You've provided a folder path. Reading all files in the folder..."
+    )
 # Initialize a dictionary where a datetime object (timestamp) is a key, the rest is a value
 log_dict = {}
 # Initialize a total counter of logs in a file or in files(in folder)
 total_count_logs = 0
-
 # Read the file(s) if it's a valid file or all files in the folder.
 if input_type == 'file':
     with open(log_path, 'r') as file:
@@ -174,7 +176,7 @@ def search_by_text(log_dictionary1, search_text=None, exclude_text=None):
                 search_results[logDatetime] = logText
         elif search_text is not None:
             # Only search_text provided
-            # This is not implemented - need more time for investigation:
+            # This is not implemented - need more time for investigation/implementation:
             # "Если производился поиск по тексту (не по отсутствию),
             # то выводить 150 символов до найденного текста, сам текст и 150 символов после текста"
             if search_text.lower() in log_text_lower:
