@@ -51,10 +51,10 @@ def print_results(blocks, search_text=None, full_message=False):
     for date, msg in blocks.items():
         if search_text and search_text in msg:
             idx = msg.index(search_text)
-            before_txt = msg[max(0, idx-150):idx]  # Modified
-            after_txt = msg[idx+len(search_text):idx+len(search_text)+150]  # Modified
+            before_txt = msg[max(0, idx - 150):idx]
+            after_txt = msg[idx + len(search_text):idx + len(search_text) + 150]
             print(Fore.YELLOW + f'[{date}] ' + Fore.WHITE + before_txt
-                  + Fore.GREEN + search_text + Fore.WHITE + after_txt)  # Modified
+                  + Fore.GREEN + search_text + Fore.WHITE + after_txt)
         else:
             print(Fore.YELLOW + f'[{date}] ' + Fore.WHITE + (msg if full_message else msg[:300]))
 
