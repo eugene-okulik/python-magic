@@ -1,11 +1,11 @@
 import mysql.connector as mysql
 
 db = mysql.connect(
-   host='db-mysql-fra1-09136-do-user-7651996-0.b.db.ondigitalocean.com',
-   port=25060,
-   user='magic',
-   passwd='AVNS_jkeRJRRrvKwNQzsTAHE',
-   database='magic'
+    host='db-mysql-fra1-09136-do-user-7651996-0.b.db.ondigitalocean.com',
+    port=25060,
+    user='magic',
+    passwd='AVNS_jkeRJRRrvKwNQzsTAHE',
+    database='magic'
 )
 
 cursor = db.cursor(dictionary=True)
