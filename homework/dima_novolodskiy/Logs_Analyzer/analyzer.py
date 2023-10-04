@@ -128,5 +128,5 @@ else:
         for log in dict_log:
             print(Fore.LIGHTYELLOW_EX + f'[{log}]' + ' ' + Fore.LIGHTWHITE_EX + f'{dict_log[log]}')
 
-print(Fore.LIGHTYELLOW_EX + 'Total logs count:' + Fore.LIGHTCYAN_EX + f' {len(Total_logs_count)}')
+print(Fore.LIGHTYELLOW_EX + 'Total logs count:' + Fore.LIGHTCYAN_EX + f' {len(total_logs_count)}')
 print(Fore.LIGHTYELLOW_EX + 'Total results count:' + Fore.LIGHTCYAN_EX + f' {len(dict_log)}')
