@@ -1,7 +1,7 @@
 import os
 import argparse
 import datetime
-from colorama import Fore
+from colorama import Fore, Style
 
 parser = argparse.ArgumentParser()
 parser.add_argument("file", help="Path to file or directory")
@@ -13,8 +13,7 @@ parser.add_argument("-t", "--text", help="A text to look for")
 parser.add_argument("-n", "--unwanted", help="A text to filter out logs. Logs with this text will be "
                                              "excluded from the results. Can be a string or a list divided by commas "
                                              "(e.g. 'out of memory, info')")
-parser.add_argument("--full", help="Return full log entry instead of default symbols Qty",
-                    action="store_true")
+parser.add_argument("--full", help="Return full log entry instead of default symbols Qty", action="store_true")
 args = parser.parse_args()
 
 
