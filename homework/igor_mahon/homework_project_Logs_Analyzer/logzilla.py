@@ -40,12 +40,6 @@ print(f"{Fore.LIGHTBLACK_EX}Filename or the path to file/s:{Fore.RESET} {args.fi
       )
 print(Fore.LIGHTBLACK_EX + '***********************************************************************')
 
-# # Create a root_path for 'python-magic'
-# root_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-#
-# # Get user input for the path
-# log_path = os.path.join(root_path, 'homework', 'eugene_okulik', 'data', args.file)
-
 
 # Determine whether the user input is a file or folder.
 def determine_file_or_folder(path):
@@ -60,11 +54,7 @@ def determine_file_or_folder(path):
 # Check and forewarn the user if the input is invalid.
 input_type = determine_file_or_folder(args.file_path)
 if input_type == 'invalid path':
-    print(
-        Fore.RED + "Invalid path. Please enter a valid file or folder path. "
-        "The default path is set to: python-magic/homework/eugene-okulik/data/"
-        f"{Fore.RED}[enter path to the file/folder name]{Fore.RESET}"
-    )
+    print(Fore.RED + "Invalid path. Please enter a valid path to file/folder.")
     sys.exit()
 elif input_type == 'folder':
     print(
