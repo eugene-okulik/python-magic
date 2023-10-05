@@ -18,10 +18,7 @@ parser = argparse.ArgumentParser(
 )
 
 # Filling ArgumentParser with information about program arguments is done by making calls to the add_argument() method.
-parser.add_argument("file", help="path to file/folder. "
-                                 "The default path is set to: python-magic/homework/eugene-okulik/data/"
-                                 f"{Fore.RED}[enter path to the file/folder name]{Fore.RESET}"
-                    )
+parser.add_argument("file_path", help="the path to file/folder.")
 parser.add_argument("-dt", "--datetime", help='datetime to search: '
                                               'to date: "../2023-01-01 00:00:00.000", '
                                               'from date: "2023-01-01 00:00:00.000/..", '
@@ -35,7 +32,7 @@ parser.add_argument("-f", "--full", help="return full log instead of default sym
                     )
 args = parser.parse_args()
 print(Fore.CYAN + "\nYou've entered these parameters:")
-print(f"{Fore.LIGHTBLACK_EX}Filename or the path to file/s:{Fore.RESET} {args.file}"
+print(f"{Fore.LIGHTBLACK_EX}Filename or the path to file/s:{Fore.RESET} {args.file_path}"
       f"\n{Fore.LIGHTBLACK_EX}Datetime to search:{Fore.RESET} {args.datetime}"
       f"\n{Fore.LIGHTBLACK_EX}Text to search:{Fore.RESET} {args.text}"
       f"\n{Fore.LIGHTBLACK_EX}Text to exclude from search:{Fore.RESET} {args.exclude}"
@@ -43,11 +40,11 @@ print(f"{Fore.LIGHTBLACK_EX}Filename or the path to file/s:{Fore.RESET} {args.fi
       )
 print(Fore.LIGHTBLACK_EX + '***********************************************************************')
 
-# Create a root_path for 'python-magic'
-root_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-
-# Get user input for the path
-log_path = os.path.join(root_path, 'homework', 'eugene_okulik', 'data', args.file)
+# # Create a root_path for 'python-magic'
+# root_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+#
+# # Get user input for the path
+# log_path = os.path.join(root_path, 'homework', 'eugene_okulik', 'data', args.file)
 
 
 # Determine whether the user input is a file or folder.
@@ -61,7 +58,7 @@ def determine_file_or_folder(path):
 
 
 # Check and forewarn the user if the input is invalid.
-input_type = determine_file_or_folder(log_path)
+input_type = determine_file_or_folder(args.file_path)
 if input_type == 'invalid path':
     print(
         Fore.RED + "Invalid path. Please enter a valid file or folder path. "
@@ -79,7 +76,7 @@ log_dict = {}
 total_count_logs = 0
 # Read the file(s) if it's a valid file or all files in the folder.
 if input_type == 'file':
-    with open(log_path, 'r') as file:
+    with open(args.file_path, 'r') as file:
         initial_logs = file.read()
         lines = initial_logs.strip().split('\n')
         # Output the name of the handled file, need to investigate how :)
@@ -98,8 +95,8 @@ if input_type == 'file':
             total_count_logs += 1
 else:
     # Read all files in the folder
-    for filename in os.listdir(log_path):
-        file_path = os.path.join(log_path, filename)
+    for filename in os.listdir(args.file_path):
+        file_path = os.path.join(args.file_path, filename)
         if os.path.isfile(file_path):
             with open(file_path, 'r') as file:
                 initial_logs = file.read()
