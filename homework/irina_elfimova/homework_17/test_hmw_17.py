@@ -18,6 +18,7 @@ def test_new_link(body):
     print(first_response)
 
 
+@pytest.mark.critical
 def test_new_cus_link():
     url = "https://gotiny.cc/api"
     payload = json.dumps({
@@ -45,6 +46,7 @@ def test_new_full_link():
     print(response.text)
 
 
+@pytest.mark.medium
 def test_link_as_text():
     url = "https://gotiny.cc/api/br7a3x"
     payload = {}
