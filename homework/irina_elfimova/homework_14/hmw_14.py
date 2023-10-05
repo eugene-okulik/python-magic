@@ -73,4 +73,5 @@ WHERE students.id = 20
 ''')
 print(cursor.fetchall())
 
+
 db.close()
