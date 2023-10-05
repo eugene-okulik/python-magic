@@ -7,13 +7,8 @@ def new_link():
         "input": "https://amazon.com/very-long-url"
     })
     headers = {'Content-Type': 'application/json'}
-    first_response = requests.post(
-        "https://gotiny.cc/api",
-        headers=headers,
-        data=body
-    ).json()
-
-    print(first_response)
+    response = requests.post("https://gotiny.cc/api", headers=headers, data=body).json()
+    print(response)
 
 
 print(new_link())
