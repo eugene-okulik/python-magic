@@ -1,5 +1,6 @@
 import mysql.connector as mysql
 
+
 db = mysql.connect(
     host='db-mysql-fra1-09136-do-user-7651996-0.b.db.ondigitalocean.com',
     port=25060,
@@ -7,6 +8,7 @@ db = mysql.connect(
     passwd='AVNS_jkeRJRRrvKwNQzsTAHE',
     database='magic'
 )
+
 
 cursor = db.cursor(dictionary=True)
 cursor.execute("INSERT INTO students (name, second_name, group_id) VALUES ('Bary', 'Ruby', 1)")
@@ -54,8 +56,10 @@ db.commit()
 cursor.execute("SELECT value FROM marks WHERE student_id = 20")
 print(cursor.fetchall())
 
+
 cursor.execute("SELECT title FROM books WHERE taken_by_student_id = 20")
 print(cursor.fetchall())
+
 
 cursor.execute('''
 SELECT * FROM students
