@@ -1,11 +1,13 @@
 import requests
 import json
+import pytest
 
 
-def test_new_link():
-    body = json.dumps({
-        "input": "https://amazon.com/very-long-url"
-    })
+@pytest.mark.parametrize('body', [json.dumps({"input": "https://amazon.com/very-long-url"}),
+                                  json.dumps({"input": "https://yandex.com/very-long-url"}),
+                                  json.dumps({"input": "https://safari.com/very-long-url"})
+                                  ])
+def test_new_link(body):
     headers = {'Content-Type': 'application/json'}
     first_response = requests.post(
         "https://gotiny.cc/api",
@@ -19,7 +21,7 @@ def test_new_link():
 def test_new_cus_link():
     url = "https://gotiny.cc/api"
     payload = json.dumps({
-        "long": "https://google.com/very-long-url",
+        "long": "https://yahoo.com/very-long-url",
         "custom": "google"
     })
     headers = {'Content-Type': 'application/json'}
@@ -34,8 +36,8 @@ def test_new_cus_link():
 def test_new_full_link():
     url = "https://gotiny.cc/api"
     payload = json.dumps({
-        "long": "https://amazon.com/very-long-url",
-        "custom": "amazon",
+        "long": "https://ozon.com/very-long-url",
+        "custom": "ozon",
         "useFallback": True
     })
     headers = {'Content-Type': 'application/json'}
