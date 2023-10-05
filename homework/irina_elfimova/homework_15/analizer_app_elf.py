@@ -5,7 +5,7 @@ from colorama import Fore, Style
 
 parser = argparse.ArgumentParser()
 parser.add_argument("file", help="Path to file or directory")
-parser.add_argument("-d", "--date", help="Datetime for search: less than: '../2022-01-13 00:00:00.000',"
+parser.add_argument("-d", "--date", help="Datetime   for search: less than: '../2022-01-13 00:00:00.000',"
                                          "more than: '2022-01-13 00:00:00.000/..',"
                                          "from - to '2022-01-13 00:00:00.000/2022-01-14 00:00:00.000',"
                                          "exact: '2022-01-13 00:00:00.000'")
