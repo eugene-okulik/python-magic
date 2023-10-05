@@ -16,6 +16,9 @@ def new_link():
     print(first_response)
 
 
+print(new_link())
+
+
 def new_cus_link():
     url = "https://gotiny.cc/api"
     payload = json.dumps({
@@ -31,6 +34,9 @@ def new_cus_link():
     print(second_response)
 
 
+print(new_cus_link())
+
+
 def new_full_link():
     url = "https://gotiny.cc/api"
     payload = json.dumps({
@@ -43,6 +49,9 @@ def new_full_link():
     print(response.text)
 
 
+print(new_full_link())
+
+
 def link_as_text():
     url = "https://gotiny.cc/api/br7a3x"
     payload = {}
@@ -51,21 +60,12 @@ def link_as_text():
     print(response.text)
 
 
-def link_as_json():
-    url = "https://gotiny.cc/api/nmytrk"
-    payload = {}
-    headers = {}
-    response = requests.get(
-        url,
-        headers=headers,
-        data=payload
-    )
-    new_data = json.loads(response)
-    print(new_data)
-
-
-print(new_link())
-print(new_cus_link())
-print(new_full_link())
 print(link_as_text())
+
+
+def link_as_json():
+    response = requests.get('https://gotiny.cc/api/nmytrk?format=json').json()
+    print(response)
+
+
 print(link_as_json())
