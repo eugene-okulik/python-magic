@@ -3,11 +3,16 @@ import json
 import pytest
 
 
+@pytest.fixture()
+def start_test():
+    print("Start testing")
+
+
 @pytest.mark.parametrize('body', [json.dumps({"input": "https://amazon.com/very-long-url"}),
                                   json.dumps({"input": "https://yandex.com/very-long-url"}),
                                   json.dumps({"input": "https://safari.com/very-long-url"})
                                   ])
-def test_new_link(body):
+def test_new_link(body, start_test):
     headers = {'Content-Type': 'application/json'}
     first_response = requests.post(
         "https://gotiny.cc/api",
@@ -55,6 +60,10 @@ def test_link_as_text():
     print(response.text)
 
 
-def test_link_as_json():
+def test_link_as_json(finish_test):
     response = requests.get('https://gotiny.cc/api/nmytrk?format=json').json()
     print(response)
+
+@pytest.fixture()
+def finish_test():
+    print("Testing completed")
