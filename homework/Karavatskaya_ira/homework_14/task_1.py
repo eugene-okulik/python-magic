@@ -8,6 +8,7 @@ db = mysql.connect(
    database='magic'
 )
 
+
 cursor = db.cursor(dictionary=True)
 cursor.execute("INSERT INTO `groups` (title, start_date,end_date) values ('AQA-01', 'jun-2023', 'des-2024')")
 db.commit()
