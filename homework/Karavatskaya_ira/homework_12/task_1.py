@@ -31,6 +31,7 @@ print(date_parts_3)
 date_3 = datetime.strptime(date_parts_3, '%Y-%m-%d %H:%M:%S.%f')
 print(date_3)
 current_date = datetime.now()
+
 # Вычисляем разницу между текущей датой и указанной датой
 days_ago = (current_date - date_3).days
 print(days_ago)
