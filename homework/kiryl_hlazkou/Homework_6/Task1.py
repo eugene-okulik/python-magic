@@ -2,15 +2,13 @@ num1 = int(input('Enter first number: '))
 num2 = int(input('Enter second number: '))
 
 
-def cal():
-    result = num1 * num2
-    if result > 20:
-        result *= 2
-    else:
-        result *= 3
-    return result
+def cal(a, b):
+    return a * b
 
 
-final_result = cal()
+result = cal(num1, num2)
 
-print("The final result is:", final_result)
+if result > 20:
+    print(cal(result, 2))
+else:
+    print(cal(result, 3))
