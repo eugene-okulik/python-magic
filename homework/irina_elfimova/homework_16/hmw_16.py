@@ -11,7 +11,7 @@ def new_link():
     print(response)
 
 
-print(new_link())
+new_link()
 
 
 def new_cus_link():
@@ -29,7 +29,7 @@ def new_cus_link():
     print(second_response)
 
 
-print(new_cus_link())
+new_cus_link()
 
 
 def new_full_link():
@@ -44,7 +44,7 @@ def new_full_link():
     print(response.text)
 
 
-print(new_full_link())
+new_full_link()
 
 
 def link_as_text():
@@ -55,7 +55,7 @@ def link_as_text():
     print(response.text)
 
 
-print(link_as_text())
+link_as_text()
 
 
 def link_as_json():
@@ -63,4 +63,4 @@ def link_as_json():
     print(response)
 
 
-print(link_as_json())
+link_as_json()
