@@ -1,3 +1,5 @@
+import random
+
 import mysql.connector as mysql
 
 
@@ -8,70 +10,79 @@ db = mysql.connect(
     passwd='AVNS_jkeRJRRrvKwNQzsTAHE',
     database='magic'
 )
-
-
 cursor = db.cursor(dictionary=True)
-cursor.execute("INSERT INTO students (name, second_name, group_id) VALUES ('Bary', 'Ruby', 1)")
+
+name, second_name, numb_group = input('Enter name, last name and group number: ').split()
+query = 'INSERT INTO students (name, second_name, group_id) VALUES (%s, %s, %s)'
+values = (name, second_name, numb_group)
+cursor.execute(query, values)
+id_student = cursor.lastrowid
 db.commit()
-cursor.execute("INSERT INTO books (title, taken_by_student_id) VALUES ('Arts_new', 20)")
-db.commit()
-cursor.execute("INSERT INTO books (title, taken_by_student_id) VALUES ('Math_new', 20)")
-db.commit()
-cursor.execute("INSERT INTO `groups` (title, start_date, end_date) VALUES ('TSR-17', 'Dec-2023', 'Mar-2026')")
-db.commit()
-cursor.execute("UPDATE students SET group_id = 17 WHERE id = 20")
-db.commit()
-cursor.execute("INSERT INTO subjets  (title) VALUES ('ARTS')")
-db.commit()
-cursor.execute("INSERT INTO subjets (title) VALUES ('SIENCE')")
-db.commit()
-cursor.execute("INSERT INTO subjets (title) VALUES ('ENGLISH')")
-db.commit()
-cursor.execute("INSERT INTO lessons (title, subject_id) VALUES ('first_lesson', 2)")
-db.commit()
-cursor.execute("INSERT INTO lessons (title, subject_id) VALUES ('second_lesson', 2)")
-db.commit()
-cursor.execute("INSERT INTO lessons (title, subject_id) VALUES ('first_lesson', 3)")
-db.commit()
-cursor.execute("INSERT INTO lessons (title, subject_id) VALUES ('second_lesson', 3)")
-db.commit()
-cursor.execute("INSERT INTO lessons (title, subject_id) VALUES ('first_lesson', 4)")
-db.commit()
-cursor.execute("INSERT INTO lessons (title, subject_id) VALUES ('second_lesson', 4)")
-db.commit()
-cursor.execute("INSERT INTO marks (value, lesson_id, student_id) VALUES ('A', 2, 20)")
-db.commit()
-cursor.execute("INSERT INTO marks (value, lesson_id, student_id) VALUES ('B', 3, 20)")
-db.commit()
-cursor.execute("INSERT INTO marks (value, lesson_id, student_id) VALUES ('B+', 4, 20)")
-db.commit()
-cursor.execute("INSERT INTO marks (value, lesson_id, student_id) VALUES ('A+', 5, 20)")
-db.commit()
-cursor.execute("INSERT INTO marks (value, lesson_id, student_id) VALUES ('C-', 6, 20)")
-db.commit()
-cursor.execute("INSERT INTO marks (value, lesson_id, student_id) VALUES ('B+', 7, 20)")
+
+number_of_books = int(input('Enter number of books: '))
+for update in range(number_of_books):
+    title = input(f'Enter title book №{update + 1}: ')
+    query = 'INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)'
+    values = (title, id_student)
+    cursor.execute(query, values)
+    db.commit()
+
+title_group, start_date, end_date = input('Enter title grop, start date and end date: ').split()
+query = 'INSERT INTO `groups` (title, start_date, end_date) VALUES (%s, %s, %s)'
+values = (title_group, start_date, end_date)
+cursor.execute(query, values)
+id_grop = cursor.lastrowid
 db.commit()
 
 
-cursor.execute("SELECT value FROM marks WHERE student_id = 20")
+cursor.execute(f"UPDATE students SET group_id = {id_grop} WHERE id = {id_student}")
+db.commit()
+
+list_subjects = input('Enter the name of the subjects you want to add: ').split()
+id_subjects = []
+for subject in list_subjects:
+    query = 'INSERT INTO subjets (title) VALUES (%s)'
+    values = (subject,)
+    cursor.execute(query, values)
+    id_subjects.append(cursor.lastrowid)
+    db.commit()
+
+lst_lesson = []
+for subject_id in id_subjects:
+    query = 'INSERT INTO lessons (title, subject_id) VALUES (%s, %s)'
+    values = ('Lesson_one', subject_id)
+    cursor.execute(query, values)
+    lst_lesson.append(cursor.lastrowid)
+    query = 'INSERT INTO lessons (title, subject_id) VALUES (%s, %s)'
+    values = ('Lesson_two', subject_id)
+    cursor.execute(query, values)
+    lst_lesson.append(cursor.lastrowid)
+    db.commit()
+
+
+query = 'INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)'
+for id_lesson in lst_lesson:
+    values = (str(random.randint(1, 5)), id_lesson, id_student)
+    cursor.execute(query, values)
+    db.commit()
+
+cursor.execute(f"SELECT value FROM marks WHERE student_id = {id_student}")
 print(cursor.fetchall())
 
-
-cursor.execute("SELECT title FROM books WHERE taken_by_student_id = 20")
+cursor.execute(f'SELECT title FROM books WHERE taken_by_student_id = {id_student}')
 print(cursor.fetchall())
 
-
-cursor.execute('''
-SELECT * FROM students
-join `groups`
-ON `groups`.id = students.group_id
-join books
-ON books.taken_by_student_id = students.id 
-join marks
-ON marks.student_id = students.id
-WHERE students.id = 20
-''')
+cursor.execute(f'''
+SELECT *
+FROM students
+INNER JOIN `groups` ON students.group_id  = `groups`.id
+INNER JOIN books ON students.id  = books.taken_by_student_id
+INNER JOIN marks ON students.id = marks.student_id
+INNER JOIN lessons ON marks.lesson_id = lessons.id
+INNER JOIN subjets ON lessons.subject_id = subjets.id
+WHERE students.id = {id_student}
+'''
+               )
 print(cursor.fetchall())
-
 
 db.close()
