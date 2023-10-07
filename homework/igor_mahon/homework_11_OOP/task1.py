@@ -54,15 +54,15 @@ class Bouquet:
     # Определение стоимости букета
     def price_bouquet(self):
         total_price = 0
-        for flower in self.flowers:
-            total_price += flower.price
+        for flower0 in self.flowers:
+            total_price += flower0.price
         print(f'The price of the bouquet is {total_price}$.')
 
     # Для букета создать метод, который определяет время его увядания по среднему времени жизни всех цветов в букете.
     def expiration_day(self):
         expire_in_days = []
-        for flower in self.flowers:
-            expire_in_days.append(flower.avg_life)
+        for flower1 in self.flowers:
+            expire_in_days.append(flower1.avg_life)
         print(f'This bouquet will expire in {round(sum(expire_in_days) / len(expire_in_days))} days.')
 
     # Позволить сортировку цветов в букете на основе различных параметров - cвежесть
@@ -72,47 +72,45 @@ class Bouquet:
         #  The resulting sorted list is reordered in place,
         #  meaning the original list is updated with the new sorted order.
         self.flowers.sort(key=lambda item: item.freshness)
-        print('The freshness is sorted in the alphabetic order("A" - fresh, "B" - normal, "C" - not fresh):')
-        for flower in self.flowers:
-            print(f' - The flower {flower.name} has the freshness {flower.freshness} in the bouquet')
+        return self.flowers
 
     # Позволить сортировку цветов в букете на основе различных параметров - цвет
     def sort_by_color(self):
         self.flowers.sort(key=lambda item: item.color)
         print('The colors are sorted in the alphabetic order:')
-        for flower in self.flowers:
-            print(f' - The flower {flower.name} has the {flower.color} color in the bouquet')
+        for flower4 in self.flowers:
+            print(f' - The FLOWER {flower4.name} has the {flower4.color} color in the bouquet')
 
     # Позволить сортировку цветов в букете на основе различных параметров - длина
     def sort_by_length(self):
         self.flowers.sort(key=lambda item: item.length)
         print('The lengths are sorted in the ASC order:')
-        for flower in self.flowers:
-            print(f' - The flower {flower.name} has the length equals to {flower.length} inches in the bouquet')
+        for flower3 in self.flowers:
+            print(f' - The flower {flower3.name} has the length equals to {flower3.length} inches in the bouquet')
 
     # Позволить сортировку цветов в букете на основе различных параметров - цена
     def sort_by_price(self):
         self.flowers.sort(key=lambda item: item.price)
         print('The prices are sorted in the ASC order:')
-        for flower in self.flowers:
-            print(f' - The flower {flower.name} has the price of {flower.price}$ in the bouquet')
+        for flower2 in self.flowers:
+            print(f' - The flower {flower2.name} has the price of {flower2.price}$ in the bouquet')
 
     # Реализовать поиск цветов в букете по каким-нибудь параметрам - цвет
     def search_by_any_parametr(self, word):
         matches = []
-        for flower in self.flowers:
-            if word in [flower.color, flower.length, flower.avg_life, flower.price]:
-                matches.append((flower.name, word))
-        print(f'По запросу "{word}" найдено {len(matches)} результата/ов в букете:')
-        for match in matches:
-            print(f"Цветок '{match[0]}' имеет параметр '{match[1]}' в букете")
+        for flower1 in self.flowers:
+            if word in [flower1.color, flower1.length, flower1.avg_life, flower1.price]:
+                matches.append(flower1.name)
+        return matches
 
 
 bouquet1 = Bouquet(tulip, lily, rose, lily2, rose2, tulip2, cactus)
+
 bouquet1.price_bouquet()
 bouquet1.expiration_day()
-bouquet1.sort_by_freshness()
+for flower in bouquet1.sort_by_freshness():
+    print(f'{flower.name} has freshness = {flower.freshness}')
 bouquet1.sort_by_color()
 bouquet1.sort_by_length()
 bouquet1.sort_by_price()
-bouquet1.search_by_any_parametr(10)
+print(bouquet1.search_by_any_parametr(10))
