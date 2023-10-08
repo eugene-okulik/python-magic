@@ -10,65 +10,60 @@ db = mysql.connect(
 
 
 cursor = db.cursor(dictionary=True)
+# Создание группы
+cursor.execute("INSERT INTO `groups` (title, start_date, end_date) VALUES ('AQA-01', 'jun-2023', 'des-2024')")
+group_id = cursor.lastrowid
 
-cursor.execute("INSERT INTO `groups` (title, start_date,end_date) values ('AQA-01', 'jun-2023', 'des-2024')")
-db.commit()
-cursor.execute("INSERT INTO students (name, second_name, group_id) values ('Martin', 'Lutter', 11)")
-last_id = cursor.lastrowid
-db.commit()
-cursor.execute(f"INSERT INTO books (title, taken_by_student_id) values ('Lutherbibel', {last_id})")
-db.commit()
-cursor.execute("INSERT INTO books (title, taken_by_student_id) values ('Philosophy',  {last_id})")
-db.commit()
-cursor.execute("INSERT INTO books (title, taken_by_student_id) values ('Theology',  {last_id})")
-db.commit()
-cursor.execute("UPDATE students SET group_id = 11 WHERE id =  {last_id}")
-db.commit()
+# Создание студента
+cursor.execute("INSERT INTO students (name, second_name, group_id) VALUES ('Martin', 'Lutter', %s)", (group_id,))
+student_id = cursor.lastrowid
+
+# Создание книг
+cursor.execute("INSERT INTO books (title, taken_by_student_id) VALUES ('Lutherbibel', %s)", (student_id,))
+cursor.execute("INSERT INTO books (title, taken_by_student_id) VALUES ('Philosophy', %s)", (student_id,))
+cursor.execute("INSERT INTO books (title, taken_by_student_id) VALUES ('Theology', %s)", (student_id,))
+
+# Обновление группы студента
+cursor.execute("UPDATE students SET group_id = %s WHERE id = %s", (group_id, student_id))
+
+# Создание предметов
 cursor.execute("INSERT INTO subjets (title) VALUES ('history')")
-db.commit()
 cursor.execute("INSERT INTO subjets (title) VALUES ('biology')")
-db.commit()
 cursor.execute("INSERT INTO subjets (title) VALUES ('math')")
-db.commit()
-cursor.execute("INSERT INTO lessons (title, subject_id) VALUES ('classes one', 7)")
-db.commit()
-cursor.execute("INSERT INTO lessons (title, subject_id) VALUES ('classes two', 7)")
-db.commit()
-cursor.execute("INSERT INTO lessons (title, subject_id) VALUES ('classes two', 8)")
-db.commit()
-cursor.execute("INSERT INTO lessons (title, subject_id) VALUES ('classes one', 9)")
-db.commit()
-cursor.execute("INSERT INTO lessons (title, subject_id) VALUES ('classes two', 9)")
-db.commit()
-cursor.execute("INSERT INTO marks (value, lesson_id, student_id) VALUES (8, 12,  {last_id})")
-db.commit()
-cursor.execute("INSERT INTO marks (value, lesson_id, student_id) VALUES (7, 13,  {last_id})")
-db.commit()
-cursor.execute("INSERT INTO marks (value, lesson_id, student_id) VALUES (9, 14,  {last_id})")
-db.commit()
-cursor.execute("INSERT INTO marks (value, lesson_id, student_id) VALUES (6, 15,  {last_id})")
-db.commit()
-cursor.execute("INSERT INTO marks (value, lesson_id, student_id) VALUES (10, 16,  {last_id})")
-db.commit()
-cursor.execute("INSERT INTO marks (value, lesson_id, student_id) VALUES (7, 17,  {last_id})")
-db.commit()
 
-cursor.execute("SELECT value FROM marks WHERE student_id =  {last_id}")
-print(cursor.fetchall())
+# Создание занятий
+cursor.execute("INSERT INTO subjets (title) VALUES ('history')")
+cursor.execute("INSERT INTO subjets (title) VALUES ('biology')")
+cursor.execute("INSERT INTO subjets (title) VALUES ('math')")
 
-cursor.execute("SELECT title FROM books WHERE taken_by_student_id =  {last_id}")
-print(cursor.fetchall())
+# Создание оценок
+lesson_ids = [12, 13, 14, 15, 16, 17]
+mark_values = [8, 7, 9, 6, 10, 7]
+for lesson_id, value in zip(lesson_ids, mark_values):
+    cursor.execute("INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)",
+                   (value, lesson_id, student_id))
 
-cursor.execute('''
-SELECT * FROM students
-JOIN `groups`
-ON `groups`.id = students.group_id
-JOIN books
-ON books.taken_by_student_id = students.id
-JOIN marks
-ON marks.student_id = students.id
-WHERE students.id =  {last_id}
-''')
-print(cursor.fetchall())
+# Получение оценок студента
+cursor.execute("SELECT value FROM marks WHERE student_id = %s", (student_id,))
+marks = cursor.fetchall()
+print("Оценки студента:", marks)
 
+# Получение названий книг, взятых студентом
+cursor.execute("SELECT title FROM books WHERE taken_by_student_id = %s", (student_id,))
+books = cursor.fetchall()
+print("Книги, взятые студентом:", books)
+
+# Получение информации о студенте, группе, книгах и оценках
+cursor.execute("""
+    SELECT *
+    FROM students
+    JOIN `groups` ON `groups`.id = students.group_id
+    JOIN books ON books.taken_by_student_id = students.id
+    JOIN marks ON marks.student_id = students.id
+    WHERE students.id = %s
+""", (student_id,))
+data = cursor.fetchall()
+print("Данные студента:", data)
+
+cursor.close()
 db.close()
