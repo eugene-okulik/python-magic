@@ -21,7 +21,7 @@ def new_custom_linc():
         "custom": "amazon"
     })
     headers = {'Content-Type': 'application/json'}
-    response_2 = requests.post(url,headers=headers, data=payload).json()
+    response_2 = requests.post(url, headers=headers, data=payload).json()
     print(response_2)
 
 
