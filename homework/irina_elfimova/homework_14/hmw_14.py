@@ -12,9 +12,9 @@ db = mysql.connect(
 )
 cursor = db.cursor(dictionary=True)
 
-name, second_name, numb_group = input('Enter name, last name and group number: ').split()
+name, second_name, group_name = input('Enter name, last name and group number: ').split()
 query = 'INSERT INTO students (name, second_name, group_id) VALUES (%s, %s, %s)'
-values = (name, second_name, numb_group)
+values = (name, second_name, group_name)
 cursor.execute(query, values)
 id_student = cursor.lastrowid
 db.commit()
