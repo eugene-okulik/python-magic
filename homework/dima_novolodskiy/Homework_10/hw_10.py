@@ -8,7 +8,7 @@ class Book:
         self.number_pages = number_pages
         self.isbn = isbn
         self.reserved = reserved
-        self.reserved_print = self.reserved_print
+        # self.reserved_print = self.reserved_print
 
     def reserved_print(self):
         if self.reserved:
