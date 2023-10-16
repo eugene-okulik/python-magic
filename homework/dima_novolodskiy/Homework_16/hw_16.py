@@ -31,7 +31,6 @@ def creat_simple_link():
         headers=headers
     )
     code_link = get_link(response.json()['code'])
-    print(response.json())
     assert response.status_code == 200
     assert response.json()['long'] == long_link
     assert long_link == code_link
@@ -47,7 +46,6 @@ def creat_option_link_custom():
     headers = {"Content-Type": "application/json"}
     response = requests.post('https://gotiny.cc/api', json=body, headers=headers)
     code_link = get_link(response.json()['code'])
-    print(response.json())
     assert response.status_code == 200
     assert response.json()['code'] == customer_code
     assert response.json()['long'] == long_link
@@ -72,7 +70,6 @@ def get_link_text():
     long_link = 'https://hh.ru/search/vacancyitems_on_page=50'
     new_code = new_link(long_link)
     response = requests.get(f'https://gotiny.cc/api/{new_code}')
-    print(response.text)
     assert response.text == long_link
 
 
@@ -80,5 +77,4 @@ def get_link_json():
     long_link = 'https://hh.ru/search/vacancyitems_on_page=50'
     new_code = new_link(long_link)
     response = requests.get(f'https://gotiny.cc/api/{new_code}?format=json')
-    print(response.json())
     assert response.json()['long'] == long_link
