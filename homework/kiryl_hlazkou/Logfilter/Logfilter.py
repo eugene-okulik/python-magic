@@ -31,7 +31,7 @@ def fetch_logs(file):
         with open(file, 'r') as log_file:
             return log_file.read()
     else:
-        print(f"Invalid file or folder path: {file}")
+        print(f'Invalid file or folder path: {file}')
         exit()
 
 
@@ -117,7 +117,8 @@ def colorize_log_entry(log_entry):
 def filter_and_print_logs(log_content, arguments):
     log_blocks = extract_log_blocks(log_content)
     matching_logs = {}
-    total_logs_count = len(log_blocks)
+    logs_counts = len(log_blocks)
+    results_counts = 0
 
     for date, block in log_blocks.items():
         if arguments.date:
@@ -147,14 +148,14 @@ def filter_and_print_logs(log_content, arguments):
             if arguments.notext and arguments.notext in block:
                 continue
             matching_logs[date] = block
+            results_counts += 1
         elif arguments.text:
             continue
         else:
             if arguments.notext and arguments.notext in block:
                 continue
             matching_logs[date] = block
-
-    total_results_count = len(matching_logs)
+            results_counts += 1
 
     # Display log entries in the desired format
     for date, log_entry in matching_logs.items():
@@ -170,23 +171,35 @@ def filter_and_print_logs(log_content, arguments):
             log_entry_short = log_entry[:300]  # Display the first 300 characters
             print(colorize_log_entry(log_entry_short))
 
-    # Apply color to headers and display counts
-    print(HEADER_COLOR + f"Total logs count: {total_logs_count}" + Style.RESET_ALL)
-    print(HEADER_COLOR + f"Total results count: {total_results_count}" + Style.RESET_ALL)
+    return logs_counts, results_counts
 
+
+# Initialize total counts outside the loop
+total_logs_count = 0
+total_results_count = 0
 
 # Check if the input path is a file or folder
 if os.path.isfile(args.path):
     # If it's a single file, process it
     logs_content = fetch_logs(args.path)
-    print(f"Processing logs from: {args.path}")
-    filter_and_print_logs(logs_content, args)
+    print(f'Processing logs from: {args.path}')
+    # Accumulate counts for this log file
+    logs_count, results_count = filter_and_print_logs(logs_content, args)
+    total_logs_count += logs_count
+    total_results_count += results_count
 elif os.path.isdir(args.path):
     # If it's a folder, use glob to find all log files and process them
     log_files = glob.glob(os.path.join(args.path, '*.log'))
     for log in log_files:
-        print(f"Processing logs from: {log}")
+        print(f'Processing logs from: {log}')
         logs_content = fetch_logs(log)
-        filter_and_print_logs(logs_content, args)
+        # Accumulate counts for this log file
+        logs_count, results_count = filter_and_print_logs(logs_content, args)
+        total_logs_count += logs_count
+        total_results_count += results_count
 else:
-    print("Invalid file or folder path.")
+    print('Invalid file or folder path.')
+
+# Print the total counts after processing all log files
+print(HEADER_COLOR + f'Total logs count: {total_logs_count}' + Style.RESET_ALL)
+print(HEADER_COLOR + f'Total results count: {total_results_count}' + Style.RESET_ALL)
