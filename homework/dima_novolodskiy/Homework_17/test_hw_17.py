@@ -2,17 +2,20 @@ import requests
 import pytest
 import random
 
+
 @pytest.fixture(scope='session')
 def start_stop():
     print("\nStart testing")
     yield
     print("\nTesting completed")
 
+
 @pytest.fixture()
 def before_after():
     print("\nbefore test")
     yield
     print("\nafter test")
+
 
 @pytest.fixture()
 def new_link():
@@ -74,6 +77,7 @@ def test_creat_option_link_custom(before_after):
     assert response.json()[0]['code'] == customer_code
     assert response.json()[0]['long'] == long_link
     assert long_link == code_link
+
 
 @pytest.mark.medium
 def test_creat_option_link_usefallback(before_after, new_link):
