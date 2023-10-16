@@ -1,0 +1,40 @@
+Создайте студента (student)
+INSERT INTO magic.students (name, second_name) VALUES ('Kirk', 'Hammett')
+Создайте несколько книг (books) и укажите, что ваш созданный студент взял их
+INSERT INTO magic.books (title, taken_by_student_id) VALUES ('Master of puppets', 54)
+INSERT INTO magic.books (title, taken_by_student_id) VALUES ('How to play the guitar', 54)
+Создайте группу (group)
+INSERT INTO magic.groups (title, start_date, end_date) VALUES ('Metallica', 'Oct-1981', 'Oct-2081')
+и определите своего студента туда
+UPDATE magic.students SET group_id = 37 WHERE id = 54
+Создайте несколько учебных предметов (subjects)
+INSERT INTO magic.subjets (title) VALUES ('Blues')
+INSERT INTO magic.subjets (title) VALUES ('Rhytm')
+Создайте по два занятия для каждого предмета (lessons)
+INSERT INTO magic.lessons (title, subject_id) VALUES ('1 Lesson', 50)
+INSERT INTO magic.lessons (title, subject_id) VALUES ('2 Lesson', 50)
+INSERT INTO magic.lessons (title, subject_id) VALUES ('1 Lesson', 49)
+INSERT INTO magic.lessons (title, subject_id) VALUES ('2 Lesson', 49)
+Поставьте своему студенту оценки (marks) для всех созданных вами занятий
+INSERT INTO magic.marks (value, lesson_id, student_id) VALUES ('Good', 80, 54)
+INSERT INTO magic.marks (value, lesson_id, student_id) VALUES ('Bad', 81, 54)
+INSERT INTO magic.marks (value, lesson_id, student_id) VALUES ('Excellent', 82, 54)
+INSERT INTO magic.marks (value, lesson_id, student_id) VALUES ('Good', 83, 54)
+Получите информацию из базы данных:
+Все оценки студента
+SELECT value Marks FROM magic.marks WHERE student_id = 54
+Все книги, которые находятся у студента
+SELECT title FROM magic.books WHERE taken_by_student_id = 54
+Для вашего студента выведите всё, что о нем есть в базе: группа, книги, оценки с названиями занятий и предметов
+(всё одним запросом с использованием Join)
+SELECT gr.title GROUPNAME, st.name FIRSTNAME, st.second_name SECONDNAME, b.title BOOKTITLE, m.value MARK, l.title LESSONTITLE
+FROM magic.groups gr
+JOIN magic.students st
+ON gr.id = st.group_id
+JOIN magic.books b
+ON b.taken_by_student_id = st.id
+JOIN magic.marks m
+ON m.student_id = st.id
+JOIN magic.lessons l
+ON m.lesson_id = l.id
+WHERE st.id = 54

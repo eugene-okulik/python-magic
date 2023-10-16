@@ -55,4 +55,3 @@ ON books.taken_by_student_id = students.id
 JOIN marks 
 ON marks.student_id = students.id 
 WHERE students.id = 17
-
