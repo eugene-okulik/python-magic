@@ -30,6 +30,7 @@ def new_link():
     )
     return response.json()
 
+
 @pytest.fixture()
 def num():
     return 1
