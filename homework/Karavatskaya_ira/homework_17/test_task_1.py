@@ -29,7 +29,7 @@ def test_create_link(long_url):
     })
     headers = {'Content-Type': 'application/json'}
     response = requests.post(url, headers=headers, data=payload).json()
-    assert response["status"] == 200
+    assert response.status_code == 200
 
 
 @pytest.mark.critical
