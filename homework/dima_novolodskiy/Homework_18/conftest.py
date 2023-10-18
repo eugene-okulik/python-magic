@@ -28,7 +28,7 @@ def new_link():
         json=body,
         headers=headers
     )
-    return response.json()[0]
+    return response.json()
 
 @pytest.fixture()
 def num():

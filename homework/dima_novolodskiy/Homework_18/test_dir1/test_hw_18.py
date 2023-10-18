@@ -2,9 +2,11 @@ import requests
 import pytest
 import random
 
+
 def get_link(cod_id):
     response = requests.get(f'https://gotiny.cc/api/{cod_id}')
     return response.text
+
 
 @pytest.mark.critical
 @pytest.mark.parametrize(
@@ -26,9 +28,9 @@ def test_creat_simple_link(link, start_stop, before_after):
         json=body,
         headers=headers
     )
-    code_link = get_link(response.json()[0]['code'])
+    code_link = get_link(response.json()['code'])
     assert response.status_code == 200
-    assert response.json()[0]['long'] == long_link
+    assert response.json()['long'] == long_link
     assert long_link == code_link
 
 
@@ -42,10 +44,10 @@ def test_creat_option_link_custom(before_after):
     }
     headers = {"Content-Type": "application/json"}
     response = requests.post('https://gotiny.cc/api', json=body, headers=headers)
-    code_link = get_link(response.json()[0]['code'])
+    code_link = get_link(response.json()['code'])
     assert response.status_code == 200
-    assert response.json()[0]['code'] == customer_code
-    assert response.json()[0]['long'] == long_link
+    assert response.json()['code'] == customer_code
+    assert response.json()['long'] == long_link
     assert long_link == code_link
 
 
