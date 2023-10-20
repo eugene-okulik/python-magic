@@ -20,16 +20,9 @@ def start():
 @pytest.mark.critical
 def test_new_cus_link(hello, start):
     url = "https://gotiny.cc/api"
-    payload = json.dumps({
-        "long": "https://yahoo.com/very-long-url",
-        "custom": "google"
-    })
+    payload = json.dumps({"long": "https://yahoo.com/very-long-url", "custom": "google"})
     headers = {'Content-Type': 'application/json'}
-    second_response = requests.post(
-        url,
-        headers=headers,
-        data=payload
-    ).json()
+    second_response = requests.post(url, headers=headers, data=payload).json()
     print(second_response)
 
 
@@ -39,13 +32,12 @@ def test_new_cus_link(hello, start):
                                   ])
 def test_new_link(body, start):
     headers = {'Content-Type': 'application/json'}
-    first_response = requests.post(
+    response = requests.post(
         "https://gotiny.cc/api",
         headers=headers,
         data=body
     ).json()
-
-    print(first_response)
+    print(response)
 
 
 def test_new_full_link(start):
@@ -57,6 +49,7 @@ def test_new_full_link(start):
     })
     headers = {'Content-Type': 'application/json'}
     response = requests.request("POST", url, headers=headers, data=payload)
+    assert response.status_code == 200
     print(response.text)
 
 
@@ -65,10 +58,12 @@ def test_link_as_text(start):
     url = "https://gotiny.cc/api/br7a3x"
     payload = {}
     headers = {}
-    response = requests.get(url, headers=headers, data=payload)
+    response = requests.request("GET", url, headers=headers, data=payload)
+    assert response.status_code == 200
     print(response.text)
 
 
 def test_link_as_json(hello, start):
-    response = requests.get('https://gotiny.cc/api/nmytrk?format=json').json()
+    response = requests.request('GET', 'https://gotiny.cc/api/nmytrk?format=json')
+    assert response.status_code == 200
     print(response)
