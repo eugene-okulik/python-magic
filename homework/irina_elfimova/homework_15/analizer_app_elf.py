@@ -18,16 +18,16 @@ parser.add_argument("--full", help="Return full log entry instead of default sym
 args = parser.parse_args()
 
 
-def list_files(path):
+def files():
     if os.path.isfile(args.file):
         return [args.file]
     elif os.path.isdir(args.file):
         return [os.path.join(args.file, file) for file in os.listdir(args.file) if file.endswith(".log")]
 
 
-def parsing(list_file):
+def parsing(file):
     dict_logs = {}
-    for file in list_file:
+    for file in file:
         with open(file) as new_file:
             lst_file = new_file.read().split()
             for index, keyword in enumerate(lst_file):
@@ -36,18 +36,18 @@ def parsing(list_file):
                         lst_file[index + 1] = lst_file[index] + ' ' + lst_file[index + 1]
                         lst_file[index] = 'split'
             new_category = True
-            current_categ = None
+            current_ctg = None
             for word in lst_file:
                 if 'split' == word:
                     new_category = True
-                    current_categ = None
+                    current_ctg = None
                     continue
                 if new_category:
                     dict_logs[word] = ''
-                    current_categ = word
+                    current_ctg = word
                     new_category = False
                 else:
-                    dict_logs[current_categ] += f' {word}'
+                    dict_logs[current_ctg] += f' {word}'
     return dict_logs
 
 
@@ -86,12 +86,12 @@ def text_sort(text, dict_logs):
     return dict_sort_text
 
 
-def unwanted_sort(unwanted, dict_logs):
-    dict_sort_unwanted = {}
+def trash_sort(trash, dict_logs):
+    dict_sort_trash = {}
     for log in dict_logs:
-        if unwanted not in dict_logs[log]:
-            dict_sort_unwanted[log] = dict_logs[log]
-    return dict_sort_unwanted
+        if trash not in dict_logs[log]:
+            dict_sort_trash[log] = dict_logs[log]
+    return dict_sort_trash
 
 
 def find_word(log, word):
@@ -104,7 +104,7 @@ def find_word(log, word):
     return extracted_text
 
 
-list_log = list_files(args.file)
+list_log = files(args.file)
 total_logs_count = parsing(list_log)
 dict_log = parsing(list_log)
 if args.date is not None:
@@ -112,7 +112,7 @@ if args.date is not None:
 if args.text is not None:
     dict_log = text_sort(args.text, dict_log)
 if args.unwanted is not None:
-    dict_log = unwanted_sort(args.unwanted, dict_log)
+    dict_log = trash_sort(args.unwanted, dict_log)
 
 if args.text is not None:
     for log in dict_log:
