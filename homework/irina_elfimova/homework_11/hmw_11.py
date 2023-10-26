@@ -62,14 +62,12 @@ class Bouquet:
     def sort_by_price(self):
         self.flowers.sort(key=lambda flower: flower.price)
 
-    def search_colors(self, color):
-        colors = []
-        for flower in self.flowers:
-            if flower.color == color.lower():
-                colors.append((flower.name, flower.color))
-        print(f'По цвету {color} найдено {len(colors)} результата/ов:')
-        for match in colors:
-            print(f"{match[0]} имеет цвет {match[1]} в букете")
+    def search_colors(self, word):
+        matches = []
+        for flower1 in self.flowers:
+            if word in [flower1.color, flower1.stem_length, flower1.lifetime, flower1.price]:
+                matches.append(flower1.name)
+        return matches
 
 
 bouquet = Bouquet()
@@ -96,4 +94,4 @@ print("По длине стебля:", [flower.name for flower in bouquet.flower
 bouquet.sort_by_price()
 print("По цене:", [flower.name for flower in bouquet.flowers])
 
-bouquet.search_colors('purple')
+print(bouquet.search_colors('purple'))
