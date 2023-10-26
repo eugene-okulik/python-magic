@@ -13,4 +13,4 @@ def test_tittle_page():
     driver.find_element(By.ID, 'APjFqb').send_keys(Keys.ENTER)
     get_title = driver.title
     assert get_title == 'cat - Поиск в Google'
-    print(get_title)
+
