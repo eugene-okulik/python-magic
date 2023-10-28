@@ -18,4 +18,5 @@ print(driver.current_url)
 search_input = driver.find_element(By.NAME, 'q')
 search_input.send_keys('cat')
 
+
 sleep(3)
