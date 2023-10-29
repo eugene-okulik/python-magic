@@ -1,0 +1,3 @@
+before test
+[{'long': 'https://yandex.com/very-long-url', 'code': 'b3xdy8'}]
+after test
