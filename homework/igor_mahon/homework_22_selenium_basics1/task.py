@@ -15,7 +15,7 @@ def test_google_cat_search(driver):
     # Зайти на https://www.google.com/
     driver.get('https://www.google.com/')
 
-    # Находим поле ввода и введим "cat" строку поиска
+    # Находим поле ввода и вводим "cat" строку поиска
     search_box = driver.find_element(By.NAME, 'q')
     search_box.send_keys('cat')
     sleep(1)  # без этого тест падает, в дальнейших тестах на буду использовать sleep :)
@@ -26,7 +26,6 @@ def test_google_cat_search(driver):
 
     # Получаем заголовок title открытой страницы
     search_results_title = driver.title
-    print(search_results_title)
 
     # В результате поиска проверить, что у открывшейся страницы title начинается со слова "cat"
     assert search_results_title.startswith('cat')
