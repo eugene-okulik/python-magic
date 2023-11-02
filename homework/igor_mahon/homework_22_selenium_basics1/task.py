@@ -6,9 +6,7 @@ from time import sleep
 
 @pytest.fixture()
 def driver():
-    driver = webdriver.Chrome()
-    yield driver
-    driver.quit()
+    return webdriver.Chrome()
 
 
 def test_google_cat_search(driver):
