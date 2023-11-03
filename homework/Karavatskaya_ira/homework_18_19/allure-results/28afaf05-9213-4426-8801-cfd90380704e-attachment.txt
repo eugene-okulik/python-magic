@@ -1,3 +1,0 @@
-before test
-[{'long': 'https://yandex.com/very-long-url', 'code': '7xkanz'}]
-after test

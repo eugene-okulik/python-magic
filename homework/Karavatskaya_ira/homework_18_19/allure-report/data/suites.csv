@@ -1,8 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Sun Oct 29 12:56:20 EET 2023","Sun Oct 29 12:56:21 EET 2023","462","homework_18_19","test_18_19","","","","test_link_as_text",""
-"passed","Sun Oct 29 12:56:19 EET 2023","Sun Oct 29 12:56:19 EET 2023","474","homework_18_19","test_18_19","","","","test_new_link[{""input"": ""https://yandex.com/very-long-url""}]",""
-"passed","Sun Oct 29 12:56:20 EET 2023","Sun Oct 29 12:56:20 EET 2023","483","homework_18_19","test_18_19","","","","test_new_full_link",""
-"passed","Sun Oct 29 12:56:21 EET 2023","Sun Oct 29 12:56:21 EET 2023","435","homework_18_19","test_18_19","","","","test_link_as_json",""
-"passed","Sun Oct 29 12:56:18 EET 2023","Sun Oct 29 12:56:19 EET 2023","495","homework_18_19","test_18_19","","","","test_new_cus_link",""
-"passed","Sun Oct 29 12:56:19 EET 2023","Sun Oct 29 12:56:20 EET 2023","469","homework_18_19","test_18_19","","","","test_new_link[{""input"": ""https://safari.com/very-long-url""}]",""
-"passed","Sun Oct 29 12:56:19 EET 2023","Sun Oct 29 12:56:19 EET 2023","441","homework_18_19","test_18_19","","","","test_new_link[{""input"": ""https://amazon.com/very-long-url""}]",""

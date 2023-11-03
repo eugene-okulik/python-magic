@@ -1,3 +1,0 @@
-before test
-[{"long":"https://ozon.com/very-long-url","code":"zhzapm"}]
-after test

@@ -1,3 +1,0 @@
-before test
-[{'long': 'https://amazon.com/very-long-url', 'code': 'dh3xxm'}]
-after test

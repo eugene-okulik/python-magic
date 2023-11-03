@@ -1,4 +1,0 @@
-Start testing
-before test
-[{'long': 'https://yahoo.com/very-long-url', 'code': 'cpt6zr'}]
-after test

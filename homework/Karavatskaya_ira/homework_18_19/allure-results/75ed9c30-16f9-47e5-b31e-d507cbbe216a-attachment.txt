@@ -1,3 +1,0 @@
-before test
-https://amazon.com/very-long-url
-after test

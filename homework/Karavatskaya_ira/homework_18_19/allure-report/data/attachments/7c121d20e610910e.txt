@@ -1,3 +1,0 @@
-before test
-[{'long': 'https://safari.com/very-long-url', 'code': '58ktde'}]
-after test
