@@ -6,3 +6,4 @@ venv
 __pycache__
 credentials.py
 .env
+homework/eugene_okulik/les_25_test/file2.txt
