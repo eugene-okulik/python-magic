@@ -6,7 +6,7 @@ options = Options()
 driver = webdriver.Chrome(options=options)
 
 
-def test_untitled():
+def test_language_choice():
     driver.get("https://www.qa-practice.com/elements/select/single_select")
     driver.set_window_size(1248, 1285)
     language = driver.find_element(By.ID, "id_choose_language")

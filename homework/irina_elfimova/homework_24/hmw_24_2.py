@@ -7,7 +7,7 @@ driver = webdriver.Chrome(options=options)
 driver.implicitly_wait(6)
 
 
-def test_untitled():
+def test_hello_world():
     driver.get("https://the-internet.herokuapp.com/dynamic_loading/2")
     driver.set_window_size(1248, 1285)
     start_button = driver.find_element(By.CSS_SELECTOR, "button")
