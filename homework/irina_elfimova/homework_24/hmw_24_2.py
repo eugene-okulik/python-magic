@@ -1,26 +1,17 @@
-import pytest
-import time
-import json
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+
+options = Options()
+driver = webdriver.Chrome(options=options)
+driver.implicitly_wait(6)
 
 
-class TestUntitled():
-    def setup_method(self, method):
-        self.driver = webdriver.Chrome()
-        self.vars = {}
-
-    def teardown_method(self, method):
-        self.driver.quit()
-
-    def test_untitled(self):
-        self.driver.get("https://the-internet.herokuapp.com/dynamic_loading/2")
-        self.driver.set_window_size(1248, 1285)
-        self.driver.find_element(By.CSS_SELECTOR, "button").click()
+def test_untitled():
+    driver.get("https://the-internet.herokuapp.com/dynamic_loading/2")
+    driver.set_window_size(1248, 1285)
+    driver.find_element(By.CSS_SELECTOR, "button").click()
+    msg_text = driver.find_element(By.XPATH, "//h4[normalize-space()='Hello World!']").text
+    assert msg_text == "Hello World!"
 
 
