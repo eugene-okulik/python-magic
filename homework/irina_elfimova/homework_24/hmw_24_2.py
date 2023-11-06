@@ -19,13 +19,8 @@ class TestUntitled():
         self.driver.quit()
 
     def test_untitled(self):
-        self.driver.get("https://www.qa-practice.com/elements/select/single_select")
+        self.driver.get("https://the-internet.herokuapp.com/dynamic_loading/2")
         self.driver.set_window_size(1248, 1285)
-        self.driver.find_element(By.ID, "id_choose_language").click()
-        dropdown = self.driver.find_element(By.ID, "id_choose_language")
-        dropdown.find_element(By.XPATH, "//option[. = 'JavaScript']").click()
-        self.driver.find_element(By.ID, "submit-id-submit").click()
-        self.driver.find_element(By.ID, "result-text").click()
-        self.driver.find_element(By.ID, "result").click()
-        self.driver.find_element(By.ID, "caret-down").click()
-        self.driver.find_element(By.CSS_SELECTOR, "#caret-up > path").click()
+        self.driver.find_element(By.CSS_SELECTOR, "button").click()
+
+
