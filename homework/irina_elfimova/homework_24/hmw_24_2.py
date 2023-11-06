@@ -14,5 +14,3 @@ def test_untitled():
     start_button.click()
     msg_text = driver.find_element(By.XPATH, "//h4[normalize-space()='Hello World!']").text
     assert msg_text == "Hello World!"
-
-
