@@ -34,21 +34,23 @@ driver.find_element(By.XPATH, "//div[@id='genterWrapper']/div[2]/div[1]/label").
 # Locate and input Mobile
 driver.find_element(By.CSS_SELECTOR, '[placeholder = "Mobile Number"]').send_keys('3231231231')
 
+# Create ActionChains object
+actions = ActionChains(driver)
+
 # Locate and input Subject
-driver.find_element(By.ID, "subjectsInput").send_keys("a new subject")
+input_subject = driver.find_element(By.XPATH, "//div[@id='subjectsWrapper']/div[2]/div[1]/div[1]/div[1]")
+actions.click(input_subject).send_keys('NEW SUBJECT!').perform()
 
 # Locate calendar and click calendar
 driver.find_element(By.ID, 'dateOfBirthInput').click()
 driver.find_element(By.CLASS_NAME, 'react-datepicker__day--today').click()
 
 # Locate and select a hobby
-driver.find_element(By.XPATH, "//div[@id='hobbiesWrapper']/div[2]/div[1]/label")
+driver.find_element(By.XPATH, "//div[@id='hobbiesWrapper']/div[2]/div[1]").click()
 
 # Locate and input Current Address
 driver.find_element(By.CSS_SELECTOR, '[placeholder = "Current Address"]').send_keys('Vitebsk')
 
-# Create ActionChains object
-actions = ActionChains(driver)
 # Locate and select State
 state_picklist = driver.find_element(By.XPATH, '//div[@id="state"]/div/div[2]')
 # Scroll to the element
