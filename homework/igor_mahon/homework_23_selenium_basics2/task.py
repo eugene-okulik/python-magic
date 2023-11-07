@@ -4,9 +4,12 @@
 После отправки вам будет отображено окошко с тем что вы ввели.
 Получите со страницы содержимое этого окошка и распечатайте (выведите на экран).
 """
-from time import sleep
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 # Initialize the Chrome WebDriver
 driver = webdriver.Chrome()
@@ -44,14 +47,27 @@ driver.find_element(By.XPATH, "//div[@id='hobbiesWrapper']/div[2]/div[1]/label")
 # Locate and input Current Address
 driver.find_element(By.CSS_SELECTOR, '[placeholder = "Current Address"]').send_keys('Vitebsk')
 
-# Set the zoom level to 50% to see picklists State and City
-driver.execute_script("document.body.style.zoom = '50%'")
-
-# Locate and click Submit
-element = driver.find_element(By.ID, 'submit')
-driver.execute_script("arguments[0].scrollIntoView();", element)
-element.click()
+# Create ActionChains object
+actions = ActionChains(driver)
 # Locate and select State
-# driver.find_element(By.CLASS_NAME, 'css-1uccc91-singleValue').click()
+state_picklist = driver.find_element(By.XPATH, '//div[@id="state"]/div/div[2]')
+# Scroll to the element
+driver.execute_script("arguments[0].scrollIntoView();", state_picklist)
+# Perform the click action
+actions.click(state_picklist).send_keys(Keys.ENTER).perform()
 
-sleep(2)
+# Locate and select City
+city_picklist = driver.find_element(By.XPATH, '//div[@id="city"]/div/div[2]')
+# Perform the click action
+actions.click(city_picklist).send_keys(Keys.ENTER).perform()
+
+# Locate and click Submit using JavaScript - I don't find another way to click this button
+submit_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, 'submit')))
+driver.execute_script("arguments[0].scrollIntoView();", submit_button)
+driver.execute_script("arguments[0].click();", submit_button)
+
+# Locate and print information from Modal
+wait = WebDriverWait(driver, 10)
+modal_window = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "modal-content")))
+# Print information from the Modal
+print(modal_window.text)  # .text is used to extract the text content from a WebElement in Selenium
