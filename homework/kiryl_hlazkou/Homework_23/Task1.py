@@ -43,7 +43,7 @@ def test_fill_forms():
     address.click()
     address.send_keys("Address")
 
-    state = driver.find_element(By.XPATH,  '//*[@id="state"]')
+    state = driver.find_element(By.XPATH, '//*[@id="state"]')
     state.click()
     driver.find_element(By.XPATH, "//div[contains(text(),'NCR')]").click()
 
