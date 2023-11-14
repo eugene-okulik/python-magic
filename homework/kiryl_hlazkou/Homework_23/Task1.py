@@ -21,7 +21,7 @@ def test_fill_forms():
     gender.click()
 
     mobile_number = driver.find_element(By.ID, "userNumber")
-    mobile_number.send_keys("+37529000111")
+    mobile_number.send_keys("375290001")
 
     date_of_birth = driver.find_element(By.ID, "dateOfBirthInput")
     date_of_birth.click()
