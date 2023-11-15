@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.select import Select
 import pytest
 
 
@@ -13,13 +14,13 @@ def driver():
 def test_select_option(driver):
     driver.get("https://www.qa-practice.com/elements/select/single_select")
     # Выбор опции из выпадающего списка
+    button = driver.find_element(By.ID, "submit-id-submit")
     select = driver.find_element(By.ID, "id_choose_language")
-    select.click()
-    dropdown = driver.find_element(By.ID, "id_choose_language")
-    dropdown.find_element(By.XPATH, "//option[. = 'Python']").click()
+    dropdown = Select(select)
+    dropdown.select_by_value('1')
 
     # Клик на кнопке Submit
-    driver.find_element(By.ID, "submit-id-submit").click()
+    button.click()
 
     # Получение текста из окна с результатом
     result_text = driver.find_element(By.ID, "result-text").text
