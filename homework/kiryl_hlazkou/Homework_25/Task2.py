@@ -24,7 +24,7 @@ def test_product_comparison(driver):
     wait = WebDriverWait(driver, 10)
     comparison_link = wait.until(
         ec.element_to_be_clickable((By.XPATH, '//a[(text()="comparison list")]'))
-        )
+    )
     comparison_link.click()
 
     added_device = driver.find_element(By.XPATH, "//strong//a[@title='Push It Messenger Bag']")
