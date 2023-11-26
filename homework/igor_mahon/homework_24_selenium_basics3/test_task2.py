@@ -1,7 +1,7 @@
-"""Напишите тест, который зайдет на страницу https://the-internet.herokuapp.com/dynamic_loading/2, 
-нажмет Start, и проверит, что на странице появляется текст "Hello World!"""
-
-
+"""
+Напишите тест, который зайдет на страницу https://the-internet.herokuapp.com/dynamic_loading/2,
+нажмет Start, и проверит, что на странице появляется текст "Hello World!
+"""
 import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
