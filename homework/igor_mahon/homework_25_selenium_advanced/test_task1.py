@@ -54,7 +54,7 @@ def test_selected_product(driver):
     # Wait for the alert to be present
     WebDriverWait(driver, 10).until(EC.alert_is_present())
 
-    # accept the active alert
+    # Accept the active alert
     alert = Alert(driver)
     alert.accept()
 
@@ -74,3 +74,37 @@ def test_selected_product(driver):
     WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, "//td[.='Samsung galaxy s6']")))
     added_product = driver.find_element(By.XPATH, "//td[.='Samsung galaxy s6']")
     assert added_product.text == 'Samsung galaxy s6', 'Expected result: Samsung galaxy s6'
+
+
+"""
+https://magento.softwaretestingboard.com/gear/bags.html Навести мышку на первый товар -> 
+кликнуть внизу карточки товара на кнопку Add to compare -> 
+Проверить, что товар появился слева на этой же странице в секции Compare Products"""
+
+
+def test_check_product(driver):
+    # Go to https://magento.softwaretestingboard.com/gear/bags.html
+    driver.get('https://magento.softwaretestingboard.com/gear/bags.html')
+
+    # Навести мышку на первый товар
+    # Locator for the element to hover over
+    hover_element = driver.find_element(By.XPATH, "//img[@alt='Push It Messenger Bag']")
+    # Locator for the button compare
+    element_compare = driver.find_element(By.XPATH, '//div[@class="actions-secondary"]/a[2]')
+
+    # Create an ActionChains object
+    actions = ActionChains(driver)
+
+    # Hover over the element
+    actions.move_to_element(hover_element).perform()
+
+    # кликнуть внизу карточки товара на кнопку Add to compare
+    actions.click(element_compare).perform()
+
+    # Проверить, что товар появился слева на этой же странице в секции Compare Products
+    # Wait for the element with compared element to appear
+    WebDriverWait(driver, 20).until(
+        EC.element_to_be_clickable((By.ID, 'compare-clear-all'))
+    )
+    compared_product = driver.find_element(By.XPATH, '//*[@id="compare-items"]/li/strong/a')
+    assert compared_product.text == 'Push It Messenger Bag'
