@@ -18,7 +18,7 @@ def driver():
     return chrome_driver
 
 
-def test_selected_value(driver):
+def test_selected_value1(driver):
     # Go to https://the-internet.herokuapp.com/dynamic_loading/2
     driver.get('https://the-internet.herokuapp.com/dynamic_loading/2')
     # Locate the button Start and click
