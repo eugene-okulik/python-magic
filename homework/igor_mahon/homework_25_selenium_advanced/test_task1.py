@@ -1,4 +1,5 @@
 """
+1 тест
 https://www.demoblaze.com/index.html
 1. откройте товар в новой вкладке
 2. Перейдите на вкладку с товаром
@@ -6,6 +7,10 @@ https://www.demoblaze.com/index.html
 4. Закройте вкладку с товаром
 5. На начальной вкладке откройте корзину
 7. Убедитесь, что в корзине тот товар, который вы добавляли
+2 тест
+https://magento.softwaretestingboard.com/gear/bags.html Навести мышку на первый товар ->
+кликнуть внизу карточки товара на кнопку Add to compare ->
+Проверить, что товар появился слева на этой же странице в секции Compare Products
 """
 import pytest
 from selenium import webdriver
@@ -74,12 +79,6 @@ def test_selected_product(driver):
     WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, "//td[.='Samsung galaxy s6']")))
     added_product = driver.find_element(By.XPATH, "//td[.='Samsung galaxy s6']")
     assert added_product.text == 'Samsung galaxy s6', 'Expected result: Samsung galaxy s6'
-
-
-"""
-https://magento.softwaretestingboard.com/gear/bags.html Навести мышку на первый товар -> 
-кликнуть внизу карточки товара на кнопку Add to compare -> 
-Проверить, что товар появился слева на этой же странице в секции Compare Products"""
 
 
 def test_check_product(driver):
